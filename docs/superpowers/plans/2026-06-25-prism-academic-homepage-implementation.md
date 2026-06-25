@@ -25,7 +25,7 @@
 - Create: `content/tooling.toml` for reproducible geospatial tooling as cards.
 - Modify: `content_zh/config.toml`, `content_zh/about.toml`, `content_zh/bio.md`, `content_zh/news.toml`, `content_zh/cv.md`, `content_zh/awards.toml`, `content_zh/services.toml`.
 - Create: `content_zh/research.toml` and `content_zh/tooling.toml`.
-- Create: `public/research/forest-age.png`, `public/research/lucc-simulation.png`, `public/research/forest-carbon.png`, and `public/profile/github-avatar.png`.
+- Create: `public/research/forest-age.png`, `public/research/lucc-simulation.png`, `public/research/forest-carbon.png`, `public/papers/forest-age.png`, `public/papers/lucc-simulation.png`, `public/papers/forest-carbon.png`, and `public/profile/github-avatar.png`.
 - Modify: `src/components/pages/CardPage.tsx` to render optional card images and links already declared in `src/types/page.ts`.
 - Modify: `README.md` to identify this fork as Zihao Huang's backup PRISM academic homepage.
 - Keep: `F:\CODE\Python\ZihaoNova.github.io` read-only; do not write into it.
@@ -166,6 +166,9 @@ Expected: a commit is created on `zihao-academic-homepage`.
 - Create: `public/research/forest-age.png`
 - Create: `public/research/lucc-simulation.png`
 - Create: `public/research/forest-carbon.png`
+- Create: `public/papers/forest-age.png`
+- Create: `public/papers/lucc-simulation.png`
+- Create: `public/papers/forest-carbon.png`
 - Create: `public/profile/github-avatar.png`
 - Modify: `src/components/pages/CardPage.tsx`
 
@@ -187,16 +190,20 @@ Write the corresponding `content_zh/` files with Chinese page titles, biography,
 
 - [ ] **Step 5: Copy image assets**
 
-Copy image assets from `F:\CODE\Python\ZihaoNova.github.io\images` into `public/research/` with stable ASCII names:
+Copy image assets from `F:\CODE\Python\ZihaoNova.github.io\images` into `public/research/` and `public/papers/` with stable ASCII names:
 
 ```powershell
 New-Item -ItemType Directory -Force -Path public\research | Out-Null
+New-Item -ItemType Directory -Force -Path public\papers | Out-Null
 Copy-Item -LiteralPath "F:\CODE\Python\ZihaoNova.github.io\images\Forest age estimation from disturbance and recovery.png" -Destination "public\research\forest-age.png" -Force
 Copy-Item -LiteralPath "F:\CODE\Python\ZihaoNova.github.io\images\LUCC simulation under climate and human effects.png" -Destination "public\research\lucc-simulation.png" -Force
 Copy-Item -LiteralPath "F:\CODE\Python\ZihaoNova.github.io\images\Forest carbon storage and NEP projection.png" -Destination "public\research\forest-carbon.png" -Force
+Copy-Item -LiteralPath "public\research\forest-age.png" -Destination "public\papers\forest-age.png" -Force
+Copy-Item -LiteralPath "public\research\lucc-simulation.png" -Destination "public\papers\lucc-simulation.png" -Force
+Copy-Item -LiteralPath "public\research\forest-carbon.png" -Destination "public\papers\forest-carbon.png" -Force
 ```
 
-Expected: three image files exist under `public\research`.
+Expected: three image files exist under `public\research` and three matching preview files exist under `public\papers`.
 
 - [ ] **Step 6: Render card images and links**
 
@@ -221,7 +228,7 @@ Expected: no matches.
 Run:
 
 ```powershell
-git add content/cv.toml content/cv.md content/awards.toml content/services.toml content_zh public/research public/profile src/components/pages/CardPage.tsx
+git add content/cv.toml content/cv.md content/awards.toml content/services.toml content/teaching.toml content_zh public/research public/papers public/profile src/app/globals.css src/app/layout.tsx src/components/home/Profile.tsx src/components/pages/CardPage.tsx src/lib/i18n/messages.ts docs/superpowers/plans/2026-06-25-prism-academic-homepage-implementation.md
 git commit -m "content: add CV localization and research assets"
 ```
 

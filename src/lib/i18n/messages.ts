@@ -115,21 +115,21 @@ const zh: LocaleMessages = {
   },
   profile: {
     email: '邮箱',
-    location: '地址',
-    workAddress: '办公地址',
+    location: '位置',
+    workAddress: '工作地址',
     click: '点击',
-    googleMap: '谷歌地图',
+    googleMap: 'Google 地图',
     send: '发送',
     sendEmail: '发送邮件',
     researchInterests: '研究兴趣',
-    like: '点赞',
-    liked: '已点赞',
+    like: '喜欢',
+    liked: '已喜欢',
     thanks: '感谢支持！',
   },
   home: {
-    about: '关于我',
+    about: '关于',
     news: '动态',
-    selectedPublications: '精选论文',
+    selectedPublications: '代表性论文',
     viewAll: '查看全部',
   },
   publications: {
@@ -144,7 +144,7 @@ const zh: LocaleMessages = {
   },
   footer: {
     lastUpdated: '最近更新',
-    builtWithPrism: '由 PRISM 构建',
+    builtWithPrism: '基于 PRISM 构建',
   },
 };
 

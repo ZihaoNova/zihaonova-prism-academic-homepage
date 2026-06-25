@@ -1,0 +1,30 @@
+type = "card"
+title = "研究"
+description = "我的研究结合遥感、土地变化模拟、林龄动态和生态过程模型，量化森林对气候变化与人类活动的响应。"
+
+[[items]]
+title = "基于扰动与恢复检测的林龄估算"
+subtitle = "LandTrendr / CCDC、遥感、机器学习"
+date = "TGRS 2023"
+image = "/research/forest-age.png"
+content = "结合森林扰动与恢复检测以及随机森林建模，开展时间序列林龄制图，为亚热带森林林龄空间估算提供支撑。"
+tags = ["林龄", "LandTrendr", "CCDC", "遥感", "机器学习"]
+link = "https://ieeexplore.ieee.org/document/10272710/"
+
+[[items]]
+title = "气候与人类活动影响下的 LUCC 模拟"
+subtitle = "FLUS / PLUS-SD、元胞自动机、情景模拟"
+date = "Remote Sensing 2022"
+image = "/research/lucc-simulation.png"
+content = "基于元胞自动机、FLUS 和 BPNN-CA-Markov 等模型，模拟不同气候与人类活动情景下的土地利用/覆盖变化。"
+tags = ["LUCC", "元胞自动机", "情景模拟", "遥感"]
+link = "https://www.mdpi.com/2072-4292/14/7/1698"
+
+[[items]]
+title = "森林碳储量与 NEP 预测"
+subtitle = "BIOME-BGC / InTEC、PLS-SEM、SSP-RCP 情景"
+date = "AFM 2025"
+image = "/research/forest-carbon.png"
+content = "将 LUCC、林龄变化、生态过程模型和情景归因分析相结合，开展森林碳储量估算与 NEP 预测。"
+tags = ["森林碳", "NEP", "BIOME-BGC", "InTEC", "SSP-RCP"]
+link = "https://linkinghub.elsevier.com/retrieve/pii/S0168192325000826"

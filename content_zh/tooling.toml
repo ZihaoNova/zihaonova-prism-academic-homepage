@@ -1,0 +1,27 @@
+type = "card"
+title = "工具"
+description = "我构建可复现的地理空间工作流，用于森林遥感、土地变化模拟、栅格验证和碳循环分析。"
+
+[[items]]
+title = "Google Earth Engine 工作流"
+subtitle = "多源遥感与时间序列分析"
+content = "面向 Landsat、Sentinel、气候、地形和生态协变量的云端预处理与特征提取。"
+tags = ["GEE", "遥感", "时间序列"]
+
+[[items]]
+title = "地理空间 Python 流水线"
+subtitle = "Rasterio、xarray、Dask 与批处理"
+content = "用于可扩展栅格处理、分块计算、情景数据准备和可复现空间分析的 Python 工作流。"
+tags = ["Python", "Rasterio", "xarray", "Dask"]
+
+[[items]]
+title = "栅格验证与快速检查"
+subtitle = "大规模空间产品质量控制"
+content = "检查 CRS、nodata、空间范围、分辨率、类别值和批量输出完整性，服务 GeoTIFF 与 NetCDF 工作流。"
+tags = ["GeoTIFF", "NetCDF", "质量控制", "验证"]
+
+[[items]]
+title = "机器学习与深度学习"
+subtitle = "RF、XGBoost、CNN 和 LSTM"
+content = "用于森林属性估算、扰动分析、土地变化驱动因子分析和遥感生态预测的建模工作流。"
+tags = ["RF", "XGBoost", "CNN", "LSTM"]

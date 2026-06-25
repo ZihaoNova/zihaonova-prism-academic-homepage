@@ -1,3 +1,4 @@
 type = "text"
 title = "简历"
+description = "学术经历、教育背景、荣誉奖励、学术报告与专业服务。"
 source = "cv.md"

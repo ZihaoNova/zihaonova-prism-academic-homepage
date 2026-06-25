@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { CardPageConfig } from '@/types/page';
 
@@ -56,6 +57,17 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                         transition={{ duration: 0.4, delay: 0.1 * index }}
                         className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01]`}
                     >
+                        {item.image && (
+                            <div className="relative mb-4 aspect-video overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800">
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    fill
+                                    className="object-cover"
+                                    sizes={embedded ? "(max-width: 1024px) 100vw, 640px" : "(max-width: 1024px) 100vw, 768px"}
+                                />
+                            </div>
+                        )}
                         <div className="flex justify-between items-start mb-2">
                             <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
                             {item.date && (
@@ -82,6 +94,16 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                     </span>
                                 ))}
                             </div>
+                        )}
+                        {item.link && (
+                            <a
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-4 inline-flex text-sm font-medium text-accent transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
+                            >
+                                Learn more
+                            </a>
                         )}
                     </motion.div>
                 ))}

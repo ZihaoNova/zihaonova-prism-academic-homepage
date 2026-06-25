@@ -1,27 +1,31 @@
 type = "card"
 title = "Awards"
-description = "Honors and awards I have received."
+description = "Selected honors and awards."
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2025"
-content = "Description of the award."
+title = "National Scholarship"
+subtitle = "Top 1%"
+date = "2023.10"
+content = "National-level scholarship awarded during doctoral study."
+tags = ["Scholarship", "Doctoral study"]
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2024"
-content = "Description of the award."
+title = "Zhejiang Provincial Outstanding Graduate"
+subtitle = "Zhejiang Province"
+date = "2025.04"
+content = "Provincial honor recognizing graduate research and academic performance."
+tags = ["Honor", "Graduate education"]
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2023"
-content = "Description of the award."
+title = "Outstanding Doctoral Dissertation"
+subtitle = "Zhejiang A&F University"
+date = "2025.06"
+content = "University-level recognition for doctoral dissertation quality."
+tags = ["Dissertation", "Ph.D."]
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2022"
-content = "Description of the award."
+title = "First-class Academic Scholarship for Doctoral Students"
+subtitle = "Zhejiang A&F University"
+date = "2021.09 - 2024.09"
+content = "First-class doctoral scholarship awarded across multiple academic years."
+tags = ["Scholarship", "Doctoral study"]

@@ -1,9 +1,10 @@
 type = "card"
 title = "Services"
-description = "Professional services and community involvement."
+description = "Professional reviewing and community service."
 
 [[items]]
-title = "Reviewer"
-subtitle = "Journal Name"
-date = "2024"
-content = "Reviewed papers for..."
+title = "Journal Reviewer"
+subtitle = "Remote sensing, forestry, ecology, and environmental science journals"
+date = "2021.09 - Present"
+content = "Reviewer for SCI journals including **International Journal of Applied Earth Observation and Geoinformation**, **Agricultural and Forest Meteorology**, **Journal of Cleaner Production**, **Cell Reports**, **CATENA**, **Ecological Indicators**, **Journal of Environmental Management**, and **Urban Climate**."
+tags = ["Peer review", "Remote sensing", "Ecology", "Environmental science"]

@@ -1,4 +1,4 @@
 type = "publication"
 title = "论文"
-description = "我的研究成果列表。"
+description = "围绕森林遥感、土地利用/覆盖变化模拟、林龄估算和森林碳循环模拟的研究论文。"
 source = "publications.bib"

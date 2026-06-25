@@ -1,9 +1,10 @@
 type = "card"
-title = "学术服务"
-description = "专业服务与社区参与。"
+title = "服务"
+description = "专业审稿与学术服务。"
 
 [[items]]
-title = "审稿人"
-subtitle = "某期刊"
-date = "2024"
-content = "参与审阅论文。"
+title = "期刊审稿人"
+subtitle = "遥感、林业、生态与环境科学相关期刊"
+date = "2021.09 - 至今"
+content = "担任多个 SCI 期刊审稿人，包括 **International Journal of Applied Earth Observation and Geoinformation**、**Agricultural and Forest Meteorology**、**Journal of Cleaner Production**、**Cell Reports**、**CATENA**、**Ecological Indicators**、**Journal of Environmental Management** 和 **Urban Climate**。"
+tags = ["同行评议", "遥感", "生态", "环境科学"]

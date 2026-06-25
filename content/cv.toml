@@ -1,3 +1,4 @@
 type = "text"
 title = "CV"
+description = "Academic experience, education, honors, talks, and professional service."
 source = "cv.md"

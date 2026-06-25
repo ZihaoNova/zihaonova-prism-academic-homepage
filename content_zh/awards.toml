@@ -1,27 +1,31 @@
 type = "card"
-title = "奖项"
-description = "我获得的荣誉与奖项。"
+title = "获奖"
+description = "主要荣誉与奖励。"
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2025"
-content = "奖项说明。"
+title = "国家奖学金"
+subtitle = "前 1%"
+date = "2023.10"
+content = "博士阶段获得的国家级奖学金。"
+tags = ["奖学金", "博士阶段"]
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2024"
-content = "奖项说明。"
+title = "浙江省优秀毕业生"
+subtitle = "浙江省"
+date = "2025.04"
+content = "表彰研究生阶段综合表现与学术成果。"
+tags = ["荣誉", "研究生教育"]
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2023"
-content = "奖项说明。"
+title = "优秀博士学位论文"
+subtitle = "浙江农林大学"
+date = "2025.06"
+content = "博士学位论文质量获得学校层面认可。"
+tags = ["博士论文", "博士"]
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2022"
-content = "奖项说明。"
+title = "博士研究生一等学业奖学金"
+subtitle = "浙江农林大学"
+date = "2021.09 - 2024.09"
+content = "博士阶段连续获得一等学业奖学金。"
+tags = ["奖学金", "博士阶段"]
