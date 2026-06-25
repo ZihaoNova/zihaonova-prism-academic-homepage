@@ -129,7 +129,7 @@ Write `content/tooling.toml` with cards for Google Earth Engine workflows, geosp
 Run:
 
 ```powershell
-rg -n "Jiale|John Doe|University of Example|Example Award|prestigious journal" content
+rg -n "Jiale|John Doe|University of Example|Example Award|prestigious journal" content/config.toml content/about.toml content/bio.md content/news.toml content/publications.bib content/publications.toml content/research.toml content/tooling.toml
 ```
 
 Expected: no matches.

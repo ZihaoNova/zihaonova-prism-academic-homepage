@@ -1,0 +1,27 @@
+type = "card"
+title = "Tooling"
+description = "I build reproducible geospatial workflows that support forest remote sensing, land-change simulation, raster validation, and carbon-cycle analysis."
+
+[[items]]
+title = "Google Earth Engine workflows"
+subtitle = "Multi-source remote sensing and time-series analysis"
+content = "Cloud-based preprocessing and feature extraction for Landsat, Sentinel, climate, terrain, and ecological covariates used in forest age and LUCC studies."
+tags = ["GEE", "Remote sensing", "Time series"]
+
+[[items]]
+title = "Geospatial Python pipelines"
+subtitle = "Rasterio, xarray, Dask, and batch geoprocessing"
+content = "Python workflows for scalable raster processing, tiled computation, scenario data preparation, and reproducible spatial analysis."
+tags = ["Python", "Rasterio", "xarray", "Dask"]
+
+[[items]]
+title = "Raster validation and smoke checks"
+subtitle = "Data QA for large spatial products"
+content = "Validation routines for CRS, nodata, spatial extent, resolution, class values, and batch output integrity across GeoTIFF and NetCDF workflows."
+tags = ["GeoTIFF", "NetCDF", "QA", "Validation"]
+
+[[items]]
+title = "Machine learning and deep learning"
+subtitle = "RF, XGBoost, CNN, and LSTM"
+content = "Modeling workflows for forest attribute estimation, disturbance analysis, land-change drivers, and remote-sensing-based ecological prediction."
+tags = ["RF", "XGBoost", "CNN", "LSTM"]

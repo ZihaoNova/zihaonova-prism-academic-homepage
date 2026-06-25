@@ -3,9 +3,11 @@ title = "About"
 
 [profile]
 research_interests = [
-  "Computational Physics",
-  "Mathematical Principles",
-  "Proof of Theorems"
+  "Forest resource remote sensing",
+  "Land use/cover change simulation",
+  "Forest age dynamics",
+  "Forest carbon cycle modeling",
+  "Reproducible geospatial Python workflows"
 ]
 
 [[sections]]
@@ -26,4 +28,3 @@ id = "news"
 type = "list"
 title = "News"
 source = "news.toml"
-

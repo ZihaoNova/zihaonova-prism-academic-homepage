@@ -1,0 +1,30 @@
+type = "card"
+title = "Research"
+description = "My research connects remote sensing, land-change modeling, forest age dynamics, and process-based carbon-cycle simulation to quantify how forests respond to climate and human pressures."
+
+[[items]]
+title = "Forest age estimation from disturbance and recovery"
+subtitle = "LandTrendr / CCDC, remote sensing, machine learning"
+date = "TGRS 2023"
+image = "/research/forest-age.png"
+content = "Time-series forest age mapping by combining disturbance and recovery detection with random forest modeling, supporting spatially explicit subtropical forest age estimation."
+tags = ["Forest age", "LandTrendr", "CCDC", "Remote sensing", "Machine learning"]
+link = "https://ieeexplore.ieee.org/document/10272710/"
+
+[[items]]
+title = "LUCC simulation under climate and human effects"
+subtitle = "FLUS / PLUS-SD, cellular automata, scenario simulation"
+date = "Remote Sensing 2022"
+image = "/research/lucc-simulation.png"
+content = "Land use/cover change simulation using cellular automata, FLUS, and BPNN-CA-Markov style models to evaluate future land-cover distributions under climate and human-impact scenarios."
+tags = ["LUCC", "Cellular automata", "Scenario modeling", "Remote sensing"]
+link = "https://www.mdpi.com/2072-4292/14/7/1698"
+
+[[items]]
+title = "Forest carbon storage and NEP projection"
+subtitle = "BIOME-BGC / InTEC, PLS-SEM, SSP-RCP scenarios"
+date = "AFM 2025"
+image = "/research/forest-carbon.png"
+content = "Remote-sensing-driven carbon storage estimation and NEP projection by linking LUCC, forest aging, ecological process models, and scenario-based attribution analysis."
+tags = ["Forest carbon", "NEP", "BIOME-BGC", "InTEC", "SSP-RCP"]
+link = "https://linkinghub.elsevier.com/retrieve/pii/S0168192325000826"

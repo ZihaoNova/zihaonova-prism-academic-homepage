@@ -1,4 +1,4 @@
 type = "publication"
 title = "Publications"
-description = "A collection of my research work."
+description = "Research publications on forest remote sensing, land use/cover change simulation, forest age estimation, and forest carbon cycle modeling."
 source = "publications.bib"
