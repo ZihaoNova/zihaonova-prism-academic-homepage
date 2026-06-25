@@ -26,6 +26,7 @@
 - Modify: `content_zh/config.toml`, `content_zh/about.toml`, `content_zh/bio.md`, `content_zh/news.toml`, `content_zh/cv.md`, `content_zh/awards.toml`, `content_zh/services.toml`.
 - Create: `content_zh/research.toml` and `content_zh/tooling.toml`.
 - Create: `public/research/forest-age.png`, `public/research/lucc-simulation.png`, `public/research/forest-carbon.png`, and `public/profile/github-avatar.png`.
+- Modify: `src/components/pages/CardPage.tsx` to render optional card images and links already declared in `src/types/page.ts`.
 - Modify: `README.md` to identify this fork as Zihao Huang's backup PRISM academic homepage.
 - Keep: `F:\CODE\Python\ZihaoNova.github.io` read-only; do not write into it.
 
@@ -166,6 +167,7 @@ Expected: a commit is created on `zihao-academic-homepage`.
 - Create: `public/research/lucc-simulation.png`
 - Create: `public/research/forest-carbon.png`
 - Create: `public/profile/github-avatar.png`
+- Modify: `src/components/pages/CardPage.tsx`
 
 - [ ] **Step 1: Replace English CV routing and Markdown**
 
@@ -196,11 +198,15 @@ Copy-Item -LiteralPath "F:\CODE\Python\ZihaoNova.github.io\images\Forest carbon 
 
 Expected: three image files exist under `public\research`.
 
-- [ ] **Step 6: Create local GitHub avatar**
+- [ ] **Step 6: Render card images and links**
+
+Modify `src/components/pages/CardPage.tsx` so each card renders `item.image` above the card text and wraps `item.link` as an external "Learn more" link at the bottom. Use the existing `CardItem` fields; do not add new content schema fields.
+
+- [ ] **Step 7: Create local GitHub avatar**
 
 Create `public/profile/github-avatar.png` from `https://github.com/ZihaoNova.png?size=320` using a network download command.
 
-- [ ] **Step 7: Run content sanity checks**
+- [ ] **Step 8: Run content sanity checks**
 
 Run:
 
@@ -210,12 +216,12 @@ rg -n "Jiale|John Doe|University of Example|Example Award|prestigious journal" c
 
 Expected: no matches.
 
-- [ ] **Step 8: Commit CV, localization, and assets**
+- [ ] **Step 9: Commit CV, localization, assets, and card rendering**
 
 Run:
 
 ```powershell
-git add content/cv.toml content/cv.md content/awards.toml content/services.toml content_zh public/research public/profile
+git add content/cv.toml content/cv.md content/awards.toml content/services.toml content_zh public/research public/profile src/components/pages/CardPage.tsx
 git commit -m "content: add CV localization and research assets"
 ```
 
@@ -319,4 +325,3 @@ git status --short
 ```
 
 Expected: source changes are committed; build and dependency artifacts are untracked or ignored.
-
