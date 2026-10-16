@@ -1,47 +1,52 @@
 # Zihao Huang PRISM Academic Homepage
 
-This repository contains a PRISM-based backup academic homepage for **Zihao Huang**, Lecturer at Zhejiang A&F University.
+[中文](README_cn.md)
 
-The site is adapted from [`xyjoey/PRISM`](https://github.com/xyjoey/PRISM), a configurable Next.js, Tailwind CSS, and TypeScript academic homepage template.
+This repository contains the PRISM-based backup academic homepage for **Zihao Huang**, Lecturer at Zhejiang A&F University, built with Next.js, Tailwind CSS, and TypeScript.
+
+Public Pages URL: <https://zihaonova.github.io/zihaonova-prism-academic-homepage/>.
+
+HugoIO remains independent: this repository neither replaces nor modifies that homepage, its repository, or its deployment.
 
 ## Content
 
-- Global site metadata and navigation: `content/config.toml`
-- Homepage structure: `content/about.toml`
-- English biography: `content/bio.md`
-- News: `content/news.toml`
-- Publications: `content/publications.bib`
-- Research themes: `content/research.toml`
-- Geospatial tooling: `content/tooling.toml`
-- CV: `content/cv.md`
-- Chinese companion content: `content_zh/`
-- Static assets: `public/research/`, `public/papers/`, and `public/profile/`
-
-The existing Jekyll homepage repository at `F:\CODE\Python\ZihaoNova.github.io` was used only as a source of public profile content and assets.
+- Site metadata and navigation: `content/config.toml`; homepage layout: `content/about.toml`.
+- Biography, news, and CV: `content/bio.md`, `content/news.toml`, and `content/cv.md`.
+- Publications: `content/publications.bib`; research and tooling: `content/research.toml` and `content/tooling.toml`.
+- Awards and service: `content/awards.toml` and `content/services.toml`.
+- Chinese content: `content_zh/`, falling back to `content/` when a localized file is missing.
+- Profile, research, and publication assets: `public/profile/`, `public/research/`, and `public/papers/`.
 
 ## Local Development
 
-PRISM requires Node.js 22 or later.
+Use Node.js 22 and pnpm 11.25.0 (pinned in `package.json`). Run from the repository root with `NEXT_PUBLIC_BASE_PATH` unset for root-path development:
 
 ```powershell
-npm install
-npm run dev
+pnpm install --frozen-lockfile
+pnpm run dev
 ```
 
-Open [http://127.0.0.1:3000](http://127.0.0.1:3000).
-
-## Build
+Open <http://localhost:3000/>. For a local root-path static export:
 
 ```powershell
-npm run build
+pnpm run test:node
+pnpm run build
+pnpm run verify:export
 ```
 
-## Notes
+## GitHub Pages
 
-- This repository is a backup academic homepage and does not replace the current `ZihaoNova.github.io` site.
-- The current customization is content-first. React component changes are limited to rendering existing PRISM card fields for images and external links.
-- Chinese content is maintained under `content_zh/`; missing localized data falls back to `content/` through PRISM's i18n loader.
+`.github/workflows/deploy.yml` automatically builds, verifies, and deploys pushes to `main`; manual dispatch is also available. It uses Node.js 22, the pinned pnpm version, a frozen install, and the Pages base path below. Static output is written to `out/`.
 
-## Acknowledgements
+To verify the Pages export locally in PowerShell:
 
-Built from PRISM by Joey Liu and contributors. PRISM is licensed under the MIT License.
+```powershell
+$env:NEXT_PUBLIC_BASE_PATH = '/zihaonova-prism-academic-homepage'
+pnpm run build
+pnpm run verify:export
+Remove-Item Env:NEXT_PUBLIC_BASE_PATH
+```
+
+## Attribution
+
+Adapted from [PRISM](https://github.com/xyjoey/PRISM) by Joey Liu and contributors. Distributed under the [MIT License](LICENSE).
