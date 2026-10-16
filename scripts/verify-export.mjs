@@ -65,7 +65,7 @@ export async function verifyExport({ outDir, basePath }) {
         }
         if (!basePath) continue;
 
-        const attributes = /\b(href|src|srcset|action|poster)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
+        const attributes = /(?:^|[\t\n\f\r ])(href|src|srcset|action|poster)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
         for (const match of html.matchAll(attributes)) {
           const value = decodeUrlReferences(match[2] ?? match[3] ?? match[4]).trim();
           const urls = match[1].toLowerCase() === 'srcset'

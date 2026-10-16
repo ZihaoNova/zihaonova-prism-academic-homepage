@@ -55,6 +55,21 @@ test('accepts a complete export', async () => {
   assert.equal(await verifyExport({ outDir, basePath }), undefined);
 });
 
+for (const [tag, attribute, dataAttribute] of [
+  ['a', 'href', 'data-nav-href'],
+  ['img', 'src', 'data-src'],
+  ['img', 'srcset', 'data-srcset'],
+  ['form', 'action', 'data-action'],
+  ['video', 'poster', 'data-poster'],
+]) {
+  test(`only matches complete URL attribute names: ${attribute}`, async () => {
+    await fixture(`<${tag} ${dataAttribute}="/" ${attribute}="${basePath}/research/">`);
+    await verifyExport({ outDir, basePath });
+    await write('cv/index.html', `<${tag} ${dataAttribute}="${basePath}/" ${attribute}="/research/">`);
+    await assert.rejects(verifyExport({ outDir, basePath }), /cv\/index\.html/);
+  });
+}
+
 for (const file of ['index.html', ...routes.map(route => `${route}/index.html`), ...assets]) {
   test(`rejects a missing required file: ${file}`, async () => {
     await fixture();
