@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:node": "node --test tests/*.test.mjs",
+    "verify:export": "node scripts/verify-export.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
