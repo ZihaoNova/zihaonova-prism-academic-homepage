@@ -3,9 +3,8 @@ import path from 'node:path';
 import { pathToFileURL, URL } from 'node:url';
 
 const routes = ['research', 'publications', 'tooling', 'awards', 'services', 'cv'];
-const requiredFiles = [
-  'index.html',
-  ...routes.map(route => `${route}/index.html`),
+const requiredPages = ['index.html', ...routes.map(route => `${route}/index.html`)];
+const requiredAssets = [
   'profile/github-avatar.png',
   'research/forest-age.png',
   'research/lucc-simulation.png',
@@ -15,7 +14,12 @@ const requiredFiles = [
   'papers/forest-carbon.png',
   'favicon.svg',
 ];
+const requiredFiles = [...requiredPages, ...requiredAssets];
 const forbiddenMarkers = ['zihaonova-academic-homepage', String.raw`F:\CODE\Python\HugoIO`];
+const textExtensions = new Set([
+  '.html', '.htm', '.js', '.mjs', '.cjs', '.json', '.map', '.txt', '.text', '.rsc',
+  '.css', '.svg', '.xml', '.webmanifest',
+]);
 
 // These named references affect URL syntax; other names cannot hide a path separator or dot segment.
 const urlReferences = {
@@ -50,20 +54,55 @@ export async function verifyExport({ outDir, basePath }) {
     }
   }
 
+  const assetReferences = new Set();
+  const exportRoot = path.resolve(outDir);
+  const origin = 'https://prism-export.invalid';
+
+  async function localTarget(url, relative) {
+    if (!url || url.startsWith('#') || url.startsWith('//') || /^[a-z][a-z0-9+.-]*:/i.test(url)) return;
+    const pageUrl = `${origin}${basePath}/${relative.replace(/index\.html$/, '')}`;
+    const resolved = new URL(url, pageUrl);
+    if (resolved.origin !== origin
+      || (basePath && resolved.pathname !== basePath && !resolved.pathname.startsWith(`${basePath}/`))) {
+      throw new Error(`${relative}: local URL ${url} resolves to ${resolved.pathname}; path must equal ${basePath} or start with ${basePath}/`);
+    }
+    const local = decodeURIComponent(resolved.pathname.slice(basePath.length)).replace(/^\/+/, '');
+    const target = path.resolve(exportRoot, local);
+    const location = path.relative(exportRoot, target);
+    if (location === '..' || location.startsWith(`..${path.sep}`) || path.isAbsolute(location)) {
+      throw new Error(`${relative}: local target ${local} escapes the export directory`);
+    }
+    try {
+      const stat = await fs.stat(target);
+      const file = stat.isDirectory() ? await fs.stat(path.join(target, 'index.html')) : stat;
+      if (!file.isFile()) throw new Error('not a file or exported route');
+    } catch (error) {
+      throw new Error(`${relative}: local URL ${url} references missing or invalid target ${local || 'index.html'}: ${error.message}`);
+    }
+    return local.replace(/\/$/, '');
+  }
+
   async function inspect(directory) {
     for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
       const target = path.join(directory, entry.name);
       if (entry.isDirectory()) {
         await inspect(target);
-      } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.html')) {
+      } else if (entry.isFile() && textExtensions.has(path.extname(entry.name).toLowerCase())) {
         const relative = path.relative(outDir, target).split(path.sep).join('/');
         const html = await fs.readFile(target, 'utf8');
+        // JS/JSON/RSC can serialize Windows paths with repeated backslashes.
+        const markerText = html.replace(/\\+/g, '\\');
         for (const marker of forbiddenMarkers) {
-          if (html.includes(marker)) {
+          if (markerText.includes(marker)) {
             throw new Error(`${relative}: forbidden marker ${marker}`);
           }
         }
-        if (!basePath) continue;
+        if (path.extname(entry.name).toLowerCase() !== '.html') continue;
+        const isApplicationPage = requiredPages.includes(relative);
+        if (isApplicationPage && !html.trim()) throw new Error(`${relative}: empty application HTML`);
+        const navigation = new Set();
+        let hasScript = false;
+        let hasStylesheet = false;
 
         const attributes = /(?:^|[\t\n\f\r ])(href|src|srcset|action|poster)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
         for (const match of html.matchAll(attributes)) {
@@ -72,19 +111,32 @@ export async function verifyExport({ outDir, basePath }) {
             ? value.split(',').map(candidate => candidate.trim().split(/\s+/)[0])
             : [value];
           for (const url of urls) {
-            if (!url.startsWith('/') || url.startsWith('//')) continue;
-            const resolved = new URL(url, 'https://prism-export.invalid');
-            if (resolved.origin !== 'https://prism-export.invalid'
-              || (resolved.pathname !== basePath && !resolved.pathname.startsWith(`${basePath}/`))) {
-              throw new Error(`${relative}: local URL ${url} resolves to ${resolved.pathname}; path must equal ${basePath} or start with ${basePath}/`);
+            const local = await localTarget(url, relative);
+            if (local === undefined || !isApplicationPage) continue;
+            assetReferences.add(local);
+            const attribute = match[1].toLowerCase();
+            if (attribute === 'href') navigation.add(local);
+            if (local.startsWith('_next/static/')) {
+              if (attribute === 'src' && local.endsWith('.js')) hasScript = true;
+              if (attribute === 'href' && local.endsWith('.css')) hasStylesheet = true;
             }
           }
+        }
+        if (isApplicationPage) {
+          for (const route of ['', ...routes]) {
+            if (!navigation.has(route)) throw new Error(`${relative}: missing required navigation reference /${route}`);
+          }
+          if (!hasScript) throw new Error(`${relative}: missing required framework script reference`);
+          if (!hasStylesheet) throw new Error(`${relative}: missing required framework stylesheet reference`);
         }
       }
     }
   }
 
   await inspect(outDir);
+  for (const asset of requiredAssets) {
+    if (!assetReferences.has(asset)) throw new Error(`Missing required static-asset reference: ${asset}`);
+  }
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {

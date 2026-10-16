@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 permissions:
   contents: read
   pages: write
@@ -13,6 +17,7 @@ permissions:
 
 jobs:
   build:
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -34,6 +39,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Test Node policies
+        run: pnpm run test:node
+
       - name: Build site
         env:
           NEXT_PUBLIC_BASE_PATH: /zihaonova-prism-academic-homepage
@@ -51,6 +59,7 @@ jobs:
 
   deploy:
     needs: build
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
