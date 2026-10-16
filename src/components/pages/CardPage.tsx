@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { CardPageConfig } from '@/types/page';
+import { withBasePath } from '@/lib/sitePath.mjs';
 
 const markdownComponents = {
     p: ({ children }: React.ComponentProps<'p'>) => <p className="mb-3 last:mb-0">{children}</p>,
@@ -60,7 +61,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                         {item.image && (
                             <div className="relative mb-4 aspect-video overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800">
                                 <Image
-                                    src={item.image}
+                                    src={withBasePath(item.image)}
                                     alt={item.title}
                                     fill
                                     className="object-cover"
