@@ -1,12 +1,9 @@
 name: Deploy PRISM to GitHub Pages
 
 on:
-  # Push triggers are disabled by default for template users.
-  # Uncomment the lines below to enable automatic deployment on push.
-  # push:
-  #  branches: 
-  #      - main
-  #      - ci
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -22,17 +19,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build site
-        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /zihaonova-prism-academic-homepage
+        run: pnpm run build
+
+      - name: Verify static export
+        env:
+          NEXT_PUBLIC_BASE_PATH: /zihaonova-prism-academic-homepage
+        run: pnpm run verify:export
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
