@@ -83,6 +83,42 @@ for (const html of [
   });
 }
 
+for (const [name, url] of [
+  ['decimal character reference', '&#47;research/'],
+  ['hexadecimal character reference', '&#x2f;research/'],
+  ['semicolonless character reference', '&#47research/'],
+  ['named slash reference', '&sol;research/'],
+  ['literal parent segment', `${basePath}/../research/`],
+  ['percent-encoded parent segment', `${basePath}/%2e%2e/research/`],
+  ['character-reference parent segment', `${basePath}/&period;&period;/research/`],
+  ['encoded backslash separator', `${basePath}/..&bsol;research/`],
+]) {
+  test(`rejects browser-resolved URLs outside base path: ${name}`, async () => {
+    await fixture();
+    await write('cv/index.html', `<a href="${url}">Research</a>`);
+    await assert.rejects(verifyExport({ outDir, basePath }), error => {
+      assert.match(error.message, /cv\/index\.html/);
+      assert.ok(error.message.includes('/research/'));
+      return true;
+    });
+  });
+}
+
+test('rejects character references in srcset URLs before splitting candidates', async () => {
+  await fixture();
+  await write('cv/index.html', `<img srcset="${basePath}/one.png 1x&comma;&#47;profile/github-avatar.png 2x">`);
+  await assert.rejects(verifyExport({ outDir, basePath }), /cv\/index\.html/);
+});
+
+test('accepts encoded and normalized paths that remain inside base path', async () => {
+  await fixture(`<a href="&#47;zihaonova-prism-academic-homepage&#47;research/?a=1&amp;b=2">Research</a>
+    <a href="${basePath}/research/../cv/">CV</a>
+    <a href="${basePath}?view=home#top">Home</a>
+    <a href="&#47;&#47;example.com/research/">External</a>
+    <img srcset="${basePath}&#47;one.png 1x&comma; ${basePath}/two.png 2x">`);
+  await verifyExport({ outDir, basePath });
+});
+
 test('accepts prefixed URLs, exact base path, and ignored URL kinds', async () => {
   await fixture(`<a href="${basePath}">Home</a>
     <a href="${basePath}/research/">Research</a>

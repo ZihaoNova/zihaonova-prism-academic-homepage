@@ -1,6 +1,6 @@
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL, URL } from 'node:url';
 
 const routes = ['research', 'publications', 'tooling', 'awards', 'services', 'cv'];
 const requiredFiles = [
@@ -16,6 +16,25 @@ const requiredFiles = [
   'favicon.svg',
 ];
 const forbiddenMarkers = ['zihaonova-academic-homepage', String.raw`F:\CODE\Python\HugoIO`];
+
+// These named references affect URL syntax; other names cannot hide a path separator or dot segment.
+const urlReferences = {
+  amp: '&', AMP: '&', quot: '"', QUOT: '"', apos: "'",
+  lt: '<', LT: '<', gt: '>', GT: '>',
+  sol: '/', bsol: '\\', period: '.', colon: ':', quest: '?', num: '#',
+  percnt: '%', equals: '=', semi: ';', comma: ',', Tab: '\t', NewLine: '\n',
+};
+
+function decodeUrlReferences(value) {
+  return value.replace(/&#(?:x([0-9a-f]+)|([0-9]+));?|&([a-z][a-z0-9]*);/gi,
+    (reference, hex, decimal, name) => {
+      if (name) return urlReferences[name] ?? reference;
+      const point = Number.parseInt(hex ?? decimal, hex ? 16 : 10);
+      return point === 0 || point > 0x10ffff || (point >= 0xd800 && point <= 0xdfff)
+        ? '\uFFFD'
+        : String.fromCodePoint(point);
+    });
+}
 
 export async function verifyExport({ outDir, basePath }) {
   for (const relative of requiredFiles) {
@@ -48,14 +67,16 @@ export async function verifyExport({ outDir, basePath }) {
 
         const attributes = /\b(href|src|srcset|action|poster)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
         for (const match of html.matchAll(attributes)) {
-          const value = (match[2] ?? match[3] ?? match[4]).trim();
+          const value = decodeUrlReferences(match[2] ?? match[3] ?? match[4]).trim();
           const urls = match[1].toLowerCase() === 'srcset'
             ? value.split(',').map(candidate => candidate.trim().split(/\s+/)[0])
             : [value];
           for (const url of urls) {
-            if (url.startsWith('/') && !url.startsWith('//')
-              && url !== basePath && !url.startsWith(`${basePath}/`)) {
-              throw new Error(`${relative}: local URL ${url} must equal ${basePath} or start with ${basePath}/`);
+            if (!url.startsWith('/') || url.startsWith('//')) continue;
+            const resolved = new URL(url, 'https://prism-export.invalid');
+            if (resolved.origin !== 'https://prism-export.invalid'
+              || (resolved.pathname !== basePath && !resolved.pathname.startsWith(`${basePath}/`))) {
+              throw new Error(`${relative}: local URL ${url} resolves to ${resolved.pathname}; path must equal ${basePath} or start with ${basePath}/`);
             }
           }
         }
