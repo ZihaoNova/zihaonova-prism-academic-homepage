@@ -26,16 +26,16 @@ function assertPagesConcurrency(source) {
 
 function assertOrderedPolicy(source) {
   const orderedPolicy = [
-    'uses: actions/checkout@v4',
-    'uses: pnpm/action-setup@v4',
-    'uses: actions/setup-node@v4',
-    'uses: actions/configure-pages@v5',
+    'uses: actions/checkout@v7',
+    'uses: pnpm/action-setup@v6',
+    'uses: actions/setup-node@v7',
+    'uses: actions/configure-pages@v6',
     'run: pnpm install --frozen-lockfile',
     'run: pnpm run test:node',
     'run: pnpm run build',
     'run: pnpm run verify:export',
-    'uses: actions/upload-pages-artifact@v3',
-    'uses: actions/deploy-pages@v4',
+    'uses: actions/upload-pages-artifact@v5',
+    'uses: actions/deploy-pages@v5',
   ];
   let previous = -1;
   for (const declaration of orderedPolicy) {
@@ -86,11 +86,11 @@ test('frozen-install policy accepts the exact run declaration', () => {
 });
 
 test('sets up pnpm before Node 22 with pnpm caching and Pages configuration', () => {
-  assert.match(workflow, /uses: pnpm\/action-setup@v4\s*\n/);
-  const node = steps.find((step) => step.includes('uses: actions/setup-node@v4')) ?? '';
+  assert.match(workflow, /uses: pnpm\/action-setup@v6\s*\n/);
+  const node = steps.find((step) => step.includes('uses: actions/setup-node@v7')) ?? '';
   assert.match(node, /node-version: 22\s*\n/);
   assert.match(node, /cache: pnpm\s*\n/);
-  assert.match(workflow, /uses: actions\/configure-pages@v5\s*\n/);
+  assert.match(workflow, /uses: actions\/configure-pages@v6\s*\n/);
 });
 
 test('installs frozen dependencies and verifies the Pages-prefix build before upload', () => {
@@ -114,11 +114,11 @@ test('CI ordering policy rejects tests before install or after build', () => {
 });
 
 test('uploads the static export and deploys it through the github-pages environment', () => {
-  const upload = steps.find((step) => step.includes('uses: actions/upload-pages-artifact@v3')) ?? '';
+  const upload = steps.find((step) => step.includes('uses: actions/upload-pages-artifact@v5')) ?? '';
   assert.match(upload, /with:\s*\n          path: \.\/out\s*$/m);
   assert.match(workflow, /deploy:\s*\n    needs: build\s*\n/);
   assert.match(workflow, /environment:\s*\n      name: github-pages\s*\n      url: \$\{\{ steps\.deployment\.outputs\.page_url \}\}/);
-  const deploy = steps.find((step) => step.includes('uses: actions/deploy-pages@v4')) ?? '';
+  const deploy = steps.find((step) => step.includes('uses: actions/deploy-pages@v5')) ?? '';
   assert.match(deploy, /id: deployment\s*\n/);
 });
 
