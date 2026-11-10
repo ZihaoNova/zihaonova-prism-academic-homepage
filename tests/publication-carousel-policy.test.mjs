@@ -29,6 +29,8 @@ test('uses a fixed stage and orientation-aware uncropped images', () => {
   assert.match(carousel, /aspect-\[9\/16\]/);
   assert.match(carousel, /object-contain/);
   assert.match(carousel, /withBasePath\(`\/papers\/\$\{/);
+  assert.match(carousel, /onLoad=/);
+  assert.doesNotMatch(carousel, /onLoadingComplete/);
 });
 
 test('provides accessible controls, keyboard navigation, and swipe navigation', () => {

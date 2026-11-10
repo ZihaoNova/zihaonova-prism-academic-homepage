@@ -107,7 +107,8 @@ export default function PublicationImageCarousel({ images, title }: PublicationI
                             fill
                             className="object-contain"
                             sizes="(max-width: 768px) 100vw, 192px"
-                            onLoadingComplete={(image) => {
+                            onLoad={(event) => {
+                                const image = event.currentTarget;
                                 const nextOrientation = classifyPreviewOrientation(
                                     image.naturalWidth,
                                     image.naturalHeight,
