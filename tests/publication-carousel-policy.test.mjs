@@ -15,6 +15,10 @@ test('integrates the carousel only into full publication cards', () => {
     list,
     /<PublicationImageCarousel[\s\S]*?images=\{pub\.previews \|\| \(pub\.preview \? \[pub\.preview\] : \[\]\)\}[\s\S]*?title=\{pub\.title\}/,
   );
+  assert.match(
+    list,
+    /embedded \? \([\s\S]*?pub\.previews\?\.\[0\] \|\| pub\.preview[\s\S]*?: \(\s*<PublicationImageCarousel/,
+  );
   assert.doesNotMatch(selected, /PublicationImageCarousel/);
   assert.doesNotMatch(cardPage, /PublicationImageCarousel/);
 });
@@ -43,6 +47,8 @@ test('provides accessible controls, keyboard navigation, and swipe navigation', 
   assert.match(carousel, /drag="x"/);
   assert.match(carousel, /SWIPE_THRESHOLD\s*=\s*50/);
   assert.match(carousel, /availableImages\.length > 1/);
+  assert.match(carousel, /grid h-6 w-6 place-items-center/);
+  assert.match(carousel, /'h-2 rounded-full/);
 });
 
 test('defines English and Chinese carousel accessibility messages', () => {

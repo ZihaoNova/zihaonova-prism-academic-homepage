@@ -153,15 +153,20 @@ export default function PublicationImageCarousel({ images, title }: PublicationI
                                     key={image}
                                     type="button"
                                     onClick={() => setActiveIndex(index)}
-                                    className={cn(
-                                        'h-2 rounded-full shadow-sm transition-[width,background-color]',
-                                        index === currentIndex ? 'w-5 bg-accent' : 'w-2 bg-white/80 hover:bg-white',
-                                    )}
+                                    className="group grid h-6 w-6 place-items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                                     aria-label={messages.publications.imagePosition
                                         .replace('{current}', String(index + 1))
                                         .replace('{total}', String(availableImages.length))}
                                     aria-current={index === currentIndex ? 'true' : undefined}
-                                />
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        className={cn(
+                                            'h-2 rounded-full shadow-sm transition-[width,background-color]',
+                                            index === currentIndex ? 'w-5 bg-accent' : 'w-2 bg-white/80 group-hover:bg-white',
+                                        )}
+                                    />
+                                </button>
                             ))}
                         </div>
                         <span
