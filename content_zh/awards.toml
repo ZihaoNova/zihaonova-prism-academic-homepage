@@ -1,31 +1,39 @@
 type = "card"
 title = "获奖"
-description = "主要荣誉与奖励。"
+description = "成果获奖、荣誉称号与奖励。"
 
 [[items]]
 title = "国家奖学金"
-subtitle = "前 1%"
+subtitle = "全国前1%"
 date = "2023.10"
-content = "博士阶段获得的国家级奖学金。"
-tags = ["奖学金", "博士阶段"]
+content = "2023年浙江农林大学林生院国家奖学金唯一获得者。"
+tags = ["博士阶段"，"奖学金"]
 
 [[items]]
 title = "浙江省优秀毕业生"
-subtitle = "浙江省"
+subtitle = "浙江省前5%"
 date = "2025.04"
-content = "表彰研究生阶段综合表现与学术成果。"
-tags = ["荣誉", "研究生教育"]
+content = "2025年浙江农林大学林生院省优获得者。"
+tags = ["博士阶段"，"荣誉称号"]
 
 [[items]]
-title = "优秀博士学位论文"
+title = "浙江农林大学校级优秀博士学位论文"
 subtitle = "浙江农林大学"
 date = "2025.06"
 content = "博士学位论文质量获得学校层面认可。"
-tags = ["博士论文", "博士"]
+tags = ["博士阶段"，"学位论文"]
 
 [[items]]
 title = "博士研究生一等学业奖学金"
 subtitle = "浙江农林大学"
 date = "2021.09 - 2024.09"
 content = "博士阶段连续获得一等学业奖学金。"
-tags = ["奖学金", "博士阶段"]
+tags = ["博士阶段", "奖学金"]
+
+[[items]]
+title = "硕士研究生二等学业奖学金"
+subtitle = "浙江农林大学"
+date = "2018.09 - 2020.09"
+content = "硕士阶段连续获得二等学业奖学金。"
+tags = ["硕士阶段", "奖学金"]
+
