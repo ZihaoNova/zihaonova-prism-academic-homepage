@@ -2,6 +2,7 @@ import { Publication, PublicationType, ResearchArea } from '@/types/publication'
 import { getConfig } from './config';
 import { getRuntimeI18nConfig } from './i18n/config';
 import { parseBibTeXInline } from './bibtexInline';
+import { parsePublicationPreviews } from './publicationPreview.mjs';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const bibtexParse = require('bibtex-parse-js');
@@ -60,8 +61,9 @@ export function parseBibTeX(bibtexContent: string, locale?: string): Publication
     // Parse selected field (convert string to boolean)
     const selected = tags.selected === 'true' || tags.selected === 'yes';
 
-    // Parse preview field (remove braces if present)
+    // Parse legacy and multi-image preview fields.
     const preview = tags.preview?.replace(/[{}]/g, '');
+    const previews = parsePublicationPreviews(tags.previews, tags.preview);
     const title = parseBibTeXInline(tags.title || 'Untitled');
 
     // Create publication object
@@ -91,9 +93,10 @@ export function parseBibTeX(bibtexContent: string, locale?: string): Publication
       description: cleanBibTeXString(tags.description || tags.note),
       selected,
       preview,
+      previews: previews.length > 0 ? previews : undefined,
 
       // Store original BibTeX (excluding custom fields)
-      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code']),
+      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'previews', 'description', 'keywords', 'code']),
     };
 
     // Clean up undefined fields
