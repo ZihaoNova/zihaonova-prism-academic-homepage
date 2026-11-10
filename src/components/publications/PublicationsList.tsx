@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import {
     MagnifyingGlassIcon,
     FunnelIcon,
@@ -14,9 +13,9 @@ import {
 import { Publication } from '@/types/publication';
 import { PublicationPageConfig } from '@/types/page';
 import { cn } from '@/lib/utils';
-import { withBasePath } from '@/lib/sitePath.mjs';
 import { useMessages } from '@/lib/i18n/useMessages';
 import FormattedBibTeXText from './FormattedBibTeXText';
+import PublicationImageCarousel from './PublicationImageCarousel';
 
 interface PublicationsListProps {
     config: PublicationPageConfig;
@@ -200,20 +199,11 @@ export default function PublicationsList({ config, publications, embedded = fals
                             transition={{ duration: 0.4, delay: 0.1 * index }}
                             className="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-md transition-all duration-200"
                         >
-                            <div className="flex flex-col md:flex-row gap-6">
-                                {pub.preview && (
-                                    <div className="w-full md:w-48 flex-shrink-0">
-                                        <div className="aspect-video md:aspect-[4/3] relative rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-800">
-                                            <Image
-                                                src={withBasePath(`/papers/${pub.preview}`)}
-                                                alt={pub.title}
-                                                fill
-                                                className="object-cover"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                            />
-                                        </div>
-                                    </div>
-                                )}
+                            <div className="flex flex-col gap-6 md:flex-row md:items-stretch">
+                                <PublicationImageCarousel
+                                    images={pub.previews || (pub.preview ? [pub.preview] : [])}
+                                    title={pub.title}
+                                />
                                 <div className="flex-grow">
                                     <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary mb-2 leading-tight`}>
                                         <FormattedBibTeXText nodes={pub.titleNodes} fallback={pub.title} />

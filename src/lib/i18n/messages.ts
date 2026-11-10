@@ -41,6 +41,10 @@ export interface LocaleMessages {
     abstract: string;
     bibtex: string;
     code: string;
+    previousImage: string;
+    nextImage: string;
+    imagePosition: string;
+    imageGallery: string;
   };
   footer: {
     lastUpdated: string;
@@ -91,6 +95,10 @@ const en: LocaleMessages = {
     abstract: 'Abstract',
     bibtex: 'BibTeX',
     code: 'Code',
+    previousImage: 'Previous image',
+    nextImage: 'Next image',
+    imagePosition: 'Image {current} of {total}',
+    imageGallery: 'Publication image gallery',
   },
   footer: {
     lastUpdated: 'Last updated',
@@ -141,6 +149,10 @@ const zh: LocaleMessages = {
     abstract: '摘要',
     bibtex: 'BibTeX',
     code: '代码',
+    previousImage: '上一张图片',
+    nextImage: '下一张图片',
+    imagePosition: '第 {current} 张，共 {total} 张',
+    imageGallery: '论文图片轮播',
   },
   footer: {
     lastUpdated: '最近更新',
