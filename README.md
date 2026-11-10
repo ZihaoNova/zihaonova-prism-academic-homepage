@@ -17,6 +17,22 @@ HugoIO remains independent: this repository neither replaces nor modifies that h
 - Chinese content: `content_zh/`, falling back to `content/` when a localized file is missing.
 - Profile, research, and publication assets: `public/profile/`, `public/research/`, and `public/papers/`.
 
+### Publication preview images
+
+Place publication images in `public/papers/` and reference their filenames in the publication's BibTeX entry. The legacy single-image field remains supported:
+
+```bibtex
+preview = {paper-overview.png}
+```
+
+For a carousel, use `previews` with semicolon-separated filenames in display order:
+
+```bibtex
+previews = {paper-overview.png; paper-method.png; paper-results.png}
+```
+
+Each publication supports a maximum of 4 unique images. Compose landscape images at 4:3 and portrait images at 9:16; keep labels and other important content away from the edges. The carousel appears only on the Publications page, while Research and home-page publication cards remain single-image layouts.
+
 ## Local Development
 
 Use Node.js 22 and pnpm 11.25.0 (pinned in `package.json`). Run from the repository root with `NEXT_PUBLIC_BASE_PATH` unset for root-path development:

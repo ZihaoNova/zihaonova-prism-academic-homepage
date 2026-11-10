@@ -17,6 +17,22 @@ HugoIO 保持独立：本仓库不会替代或修改该主页、其仓库及部�
 - 中文内容：`content_zh/`；缺少本地化文件时回退至 `content/`。
 - 个人、研究与论文资源：`public/profile/`、`public/research/`、`public/papers/`。
 
+### 论文预览图
+
+将论文图片放入 `public/papers/`，并在对应论文的 BibTeX 条目中填写文件名。原有的单图字段继续有效：
+
+```bibtex
+preview = {paper-overview.png}
+```
+
+如需轮播，请在 `previews` 中按显示顺序使用英文分号分隔文件名：
+
+```bibtex
+previews = {paper-overview.png; paper-method.png; paper-results.png}
+```
+
+每篇论文最多显示 4 张不重复图片。横版图片建议按 4:3 构图，竖版图片建议按 9:16 构图，并将文字标签等重要内容避开图片边缘。轮播仅用于“论文”页面；“研究”页面和首页论文卡片仍保持单图布局。
+
 ## 本地开发
 
 使用 Node.js 22 和 `package.json` 固定的 pnpm 11.25.0。在仓库根目录运行，确保未设置 `NEXT_PUBLIC_BASE_PATH`，以根路径开发：
