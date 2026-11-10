@@ -1,7 +1,7 @@
-我是**黄子豪**，现任**浙江农林大学讲师**。我的研究方向包括森林资源遥感、土地利用/覆盖变化模拟、林龄动态和森林碳循环模拟。
+我是**黄子豪**，博士，现任浙江农林大学环境与资源学院讲师。2018年毕业于南京工业大学获地理信息科学学士学位，2021年与2025年先后在浙江农林大学获森林经理学硕士与林学博士学位；2024年11月至2025年5月赴芬兰东芬兰大学访学交流，2025年7月起入职浙江农林大学环境与资源学院。
 
-我的研究结合多源遥感、地理空间建模、机器学习和生态过程模型，关注土地覆盖变化与林龄动态如何影响亚热带森林碳循环。常用技术包括 Google Earth Engine、Python、元胞自动机与 FLUS 类 LUCC 模型、LandTrendr 与 CCDC 扰动检测、BIOME-BGC 与 InTEC 过程模型，以及 RF、XGBoost、CNN 和 LSTM 等方法。
+主要研究方向聚焦于**土地覆盖变化时空监测与模拟**、**森林资源遥感监测**与**森林碳循环模拟**，重点关注土地覆盖演变与林龄动态对中国亚热带森林碳循环的影响。研究主线是通过多源遥感技术重构历史土地覆盖与林龄时空动态，并结合生态过程模型与情景模拟方法，预测与探究未来情景下两者演变对森林碳储量与碳通量的耦合效应。主要研究方法涵盖：(1) 元胞自动机与 FLUS 等土地利用/覆盖模拟模型；(2) LandTrendr 与 CCDC 等森林扰动检测算法；(3) RF、XGBoost 等机器学习及 CNN、LSTM 等深度学习算法；(4) BIOME-BGC 与 InTEC 等森林碳汇生态过程模型；(5) 结构方程与地理探测器等空间统计与分析模型。
 
-我于 2025 年在浙江农林大学获得林学博士学位，并于 2024 至 2025 年在**东芬兰大学**访学，研究深度学习与人工智能在芬兰林业中的应用。
+截至2026年11月，以第一作者身份在 ***IEEE Transactions on Geoscience and Remote Sensing***、***Agricultural and Forest Meteorology***、***Geo-spatial Information Science*** 等国内外优质期刊发表学术论文7篇，累计IF逾38；合作参与发表遥感、地学与林学类期刊论文38篇；论文总被引1086次，他引872次，H指数21（WoS）；技术成果方面，以第一发明人获授权国家发明专利1项、登记软件著作权5项。
 
-我的第一作者论文发表于 **IEEE Transactions on Geoscience and Remote Sensing**、**Agricultural and Forest Meteorology**、**Geo-spatial Information Science**、**Remote Sensing**、**Ecological Indicators** 和 **ISPRS International Journal of Geo-Information** 等期刊。欢迎围绕森林遥感、LUCC 模拟、森林碳核算和可复现地理空间 Python 工具开展合作。
+诚挚欢迎土地覆盖模拟、林业定量遥感与森林碳循环等相关领域的同行学者们开展交流与合作！
