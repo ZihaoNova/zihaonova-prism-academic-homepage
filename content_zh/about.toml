@@ -21,6 +21,7 @@ id = "featured_publications"
 type = "publications"
 title = "代表性论文"
 filter = "selected"
+sort_by = "impact_factor"
 limit = 5
 
 [[sections]]

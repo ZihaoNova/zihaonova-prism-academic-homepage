@@ -16,6 +16,8 @@ interface SectionConfig {
   content?: string;
   publications?: Publication[];
   items?: NewsItem[];
+  sort_by?: string;
+  sortBy?: string;
 }
 
 interface NewsItem {
@@ -40,9 +42,38 @@ function processSections(sections: SectionConfig[], locale?: string): SectionCon
       case 'publications': {
         const bibtex = getBibtexContent('publications.bib', locale);
         const allPubs = parseBibTeX(bibtex, locale);
-        const filteredPubs = section.filter === 'selected'
+        let filteredPubs = section.filter === 'selected'
           ? allPubs.filter((p) => p.selected)
           : allPubs;
+
+        const sortBy = section.sort_by || section.sortBy || (section.id === 'featured_publications' ? 'impact_factor' : undefined);
+        if (sortBy === 'impact_factor' || sortBy === 'if') {
+          filteredPubs = [...filteredPubs].sort((a, b) => {
+            const getIF = (pub: Publication) => {
+              if (pub.impactFactor === undefined || pub.impactFactor === null) return -1;
+              const val = typeof pub.impactFactor === 'number' ? pub.impactFactor : parseFloat(String(pub.impactFactor));
+              return isNaN(val) ? -1 : val;
+            };
+            const ifA = getIF(a);
+            const ifB = getIF(b);
+
+            if (ifB !== ifA) {
+              return ifB - ifA;
+            }
+
+            if (b.year !== a.year) {
+              return b.year - a.year;
+            }
+
+            const getMonth = (m?: string | number) => {
+              if (!m) return 1;
+              if (typeof m === 'number') return m;
+              const parsed = parseInt(m);
+              return isNaN(parsed) ? 1 : parsed;
+            };
+            return getMonth(b.month) - getMonth(a.month);
+          });
+        }
         return {
           ...section,
           publications: filteredPubs.slice(0, section.limit || 5),
