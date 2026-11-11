@@ -41,7 +41,7 @@ export interface Publication {
   type: PublicationType;
   status: PublicationStatus;
   citations?: number;
-  impactFactor?: number;
+  impactFactor?: number | string;
   quartile?: 'Q1' | 'Q2' | 'Q3' | 'Q4';
   bibtex?: string;
   venue?: string;

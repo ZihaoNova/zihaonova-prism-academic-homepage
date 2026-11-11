@@ -233,14 +233,24 @@ export default function PublicationsList({ config, publications, embedded = fals
                                                     {author.name}
                                                 </span>
                                                 {author.isCorresponding && (
-                                                    <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'}`}>†</sup>
+                                                    <sup className={`ml-0.5 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'}`}>*</sup>
                                                 )}
                                                 {idx < pub.authors.length - 1 && ', '}
                                             </span>
                                         ))}
                                     </p>
                                     <p className="text-sm font-medium text-neutral-800 dark:text-neutral-600 mb-3">
-                                        {pub.journal || pub.conference} {pub.year}
+                                        <span>{pub.journal || pub.conference} {pub.year}</span>
+                                        {pub.impactFactor && (
+                                            <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-neutral-200/70 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-300/60 dark:border-neutral-700">
+                                                IF {pub.impactFactor}
+                                            </span>
+                                        )}
+                                        {pub.quartile && (
+                                            <span className="ml-1 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-semibold bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800/60">
+                                                {pub.quartile}
+                                            </span>
+                                        )}
                                     </p>
 
                                     {pub.description && (

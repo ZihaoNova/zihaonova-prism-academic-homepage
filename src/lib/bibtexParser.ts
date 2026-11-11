@@ -94,6 +94,8 @@ export function parseBibTeX(bibtexContent: string, locale?: string): Publication
       selected,
       preview,
       previews: previews.length > 0 ? previews : undefined,
+      impactFactor: (tags.impact_factor || tags.if || tags.impactfactor) ? cleanBibTeXString(tags.impact_factor || tags.if || tags.impactfactor) : undefined,
+      quartile: (tags.quartile as Publication['quartile']) || undefined,
 
       // Store original BibTeX (excluding custom fields)
       bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'previews', 'description', 'keywords', 'code']),
@@ -271,7 +273,8 @@ function reconstructBibTeX(entry: { entryType: string; citationKey: string; entr
 
   Object.entries(entryTags).forEach(([key, value]) => {
     // Skip excluded fields
-    if (!excludeFields.includes(key.toLowerCase())) {
+    const allExcluded = [...excludeFields, 'impact_factor', 'if', 'impactfactor', 'quartile'];
+    if (!allExcluded.includes(key.toLowerCase())) {
       let cleanValue = value;
 
       // Clean author field by removing # and * symbols
