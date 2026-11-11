@@ -95,7 +95,7 @@ export function parseBibTeX(bibtexContent: string, locale?: string): Publication
       preview,
       previews: previews.length > 0 ? previews : undefined,
       impactFactor: (tags.impact_factor || tags.if || tags.impactfactor) ? cleanBibTeXString(tags.impact_factor || tags.if || tags.impactfactor) : undefined,
-      quartile: (tags.quartile as Publication['quartile']) || undefined,
+      quartile: ((tags.quartile || tags.quarter) as Publication['quartile']) || undefined,
 
       // Store original BibTeX (excluding custom fields)
       bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'previews', 'description', 'keywords', 'code']),
@@ -273,7 +273,7 @@ function reconstructBibTeX(entry: { entryType: string; citationKey: string; entr
 
   Object.entries(entryTags).forEach(([key, value]) => {
     // Skip excluded fields
-    const allExcluded = [...excludeFields, 'impact_factor', 'if', 'impactfactor', 'quartile'];
+    const allExcluded = [...excludeFields, 'impact_factor', 'if', 'impactfactor', 'quartile', 'quarter'];
     if (!allExcluded.includes(key.toLowerCase())) {
       let cleanValue = value;
 
