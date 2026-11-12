@@ -57,13 +57,13 @@ subtitle = "The 2nd Zhejiang Remote Sensing Science Frontier Interdisciplinary F
 tags = ["Invited talk"]
 
 [[sections.items]]
-date = "2021.11.28"
+date = "2021.11.27 - 2021.11.28"
 location = "Hangzhou, China"
 title = "Spatiotemporal LUCC Simulation under RCP Scenarios Based on the BPNN_CA_Markov Model: A Case Study of Bamboo Forest in Anji County"
 subtitle = "3rd International Symposium on Carbon Cycling, Sequestration and Emission Reduction in Agricultural and Forest Ecosystems"
 
 [[sections.items]]
 date = "2021.09.25 - 2021.09.26"
-location = "Online"
+location = "Bilibili Online"
 title = "Spatiotemporal land-use change simulation under different climate scenarios using a CA-Markov model: A case study of bamboo forest in Anji County"
 subtitle = "Youth Academic Forum of National Remote Sensing Bulletin"

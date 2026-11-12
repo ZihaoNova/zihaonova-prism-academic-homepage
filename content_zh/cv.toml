@@ -57,13 +57,13 @@ subtitle = "第二届浙江省遥感科学前沿交叉论坛"
 tags = ["特邀报告"]
 
 [[sections.items]]
-date = "2021.11.28"
+date = "2021.11.27 - 2021.11.28"
 location = "中国杭州"
 title = "Spatiotemporal LUCC Simulation under RCP Scenarios Based on the BPNN_CA_Markov Model: A Case Study of Bamboo Forest in Anji County"
 subtitle = "3rd International Symposium on Carbon Cycling, Sequestration and Emission Reduction in Agricultural and Forest Ecosystems"
 
 [[sections.items]]
 date = "2021.09.25 - 2021.09.26"
-location = "线上"
+location = "腾讯会议直播"
 title = "CA 耦合 Markov 模型的不同气候情景下土地利用变化时空模拟：以安吉县竹林为例"
 subtitle = "《遥感学报》青年学术论坛暨第六届全国遥感地理信息研究生论坛"
