@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Publication } from '@/types/publication';
 import { useMessages } from '@/lib/i18n/useMessages';
 import FormattedBibTeXText from '@/components/publications/FormattedBibTeXText';
+import PublicationMetricBadges from '@/components/publications/PublicationMetricBadges';
 
 interface SelectedPublicationsProps {
     publications: Publication[];
@@ -57,18 +58,9 @@ export default function SelectedPublications({ publications, title, enableOnePag
                                 </span>
                             ))}
                         </p>
-                        <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-2">
+                        <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-2 flex flex-wrap items-center gap-y-1">
                             <span>{pub.journal || pub.conference}</span>
-                            {pub.impactFactor && (
-                                <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-neutral-200/70 dark:bg-neutral-700/60 text-neutral-800 dark:text-neutral-200">
-                                    IF {pub.impactFactor}
-                                </span>
-                            )}
-                            {pub.quartile && (
-                                <span className="ml-1 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-semibold bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
-                                    {pub.quartile}
-                                </span>
-                            )}
+                            <PublicationMetricBadges impactFactor={pub.impactFactor} quartile={pub.quartile} />
                         </p>
                         {pub.description && (
                             <p className="text-sm text-neutral-500 dark:text-neutral-500 line-clamp-2">

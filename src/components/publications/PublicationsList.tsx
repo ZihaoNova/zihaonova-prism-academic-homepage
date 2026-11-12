@@ -18,6 +18,7 @@ import { withBasePath } from '@/lib/sitePath.mjs';
 import { useMessages } from '@/lib/i18n/useMessages';
 import FormattedBibTeXText from './FormattedBibTeXText';
 import PublicationImageCarousel from './PublicationImageCarousel';
+import PublicationMetricBadges from './PublicationMetricBadges';
 
 interface PublicationsListProps {
     config: PublicationPageConfig;
@@ -239,18 +240,9 @@ export default function PublicationsList({ config, publications, embedded = fals
                                             </span>
                                         ))}
                                     </p>
-                                    <p className="text-sm font-medium text-neutral-800 dark:text-neutral-600 mb-3">
+                                    <p className="text-sm font-medium text-neutral-800 dark:text-neutral-600 mb-3 flex flex-wrap items-center gap-y-1">
                                         <span>{pub.journal || pub.conference} {pub.year}</span>
-                                        {pub.impactFactor && (
-                                            <span className="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-neutral-200/70 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-300/60 dark:border-neutral-700">
-                                                IF {pub.impactFactor}
-                                            </span>
-                                        )}
-                                        {pub.quartile && (
-                                            <span className="ml-1 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-semibold bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-800/60">
-                                                {pub.quartile}
-                                            </span>
-                                        )}
+                                        <PublicationMetricBadges impactFactor={pub.impactFactor} quartile={pub.quartile} />
                                     </p>
 
                                     {pub.description && (

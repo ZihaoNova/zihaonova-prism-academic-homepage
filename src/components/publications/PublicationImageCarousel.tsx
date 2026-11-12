@@ -147,7 +147,12 @@ export default function PublicationImageCarousel({ images, title }: PublicationI
                             <ChevronRightIcon className="h-5 w-5" />
                         </button>
 
-                        <div className="absolute inset-x-0 bottom-2 z-10 flex items-center justify-center gap-1.5">
+                        <div
+                            className={cn(
+                                'absolute inset-x-0 bottom-2 z-10 flex items-center justify-center',
+                                availableImages.length > 4 ? 'gap-0.5' : 'gap-1.5',
+                            )}
+                        >
                             {availableImages.map((image, index) => (
                                 <button
                                     key={image}

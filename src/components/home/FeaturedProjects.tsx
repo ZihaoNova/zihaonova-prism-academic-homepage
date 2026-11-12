@@ -74,7 +74,7 @@ export default function FeaturedProjects({
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-300" />
                                         {badge && (
-                                            <span className="absolute top-2.5 right-2.5 inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-background/85 text-primary backdrop-blur-md border border-neutral-200/70 dark:border-neutral-700/70 shadow-sm">
+                                            <span className="absolute top-2.5 right-2.5 inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-background/85 text-primary backdrop-blur-md border border-neutral-200/70 dark:border-slate-700/70 shadow-sm">
                                                 {badge}
                                             </span>
                                         )}
@@ -96,11 +96,11 @@ export default function FeaturedProjects({
                                     </p>
 
                                     {project.tags && project.tags.length > 0 && (
-                                        <div className="flex flex-wrap gap-1.5 mt-3 pt-2.5 border-t border-neutral-200/70 dark:border-neutral-700/60">
+                                        <div className="flex flex-wrap gap-1.5 mt-3 pt-2.5 border-t border-neutral-200/70 dark:border-slate-700/60">
                                             {project.tags.slice(0, 2).map((tag) => (
                                                 <span
                                                     key={tag}
-                                                    className="text-[11px] px-1.5 py-0.5 rounded bg-white dark:bg-neutral-900/70 text-neutral-600 dark:text-neutral-500 border border-neutral-200/80 dark:border-neutral-700/70"
+                                                    className="text-[11px] px-1.5 py-0.5 rounded bg-white dark:bg-neutral-900/70 text-neutral-600 dark:text-neutral-500 border border-neutral-200/80 dark:border-slate-700/70"
                                                 >
                                                     {tag}
                                                 </span>

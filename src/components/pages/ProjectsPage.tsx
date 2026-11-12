@@ -72,7 +72,7 @@ function ProjectMetaRow({
                 </span>
             )}
             {project.code_id && (
-                <span className="font-mono text-[11px] bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded border border-neutral-200/70 dark:border-neutral-700/70">
+                <span className="font-mono text-[11px] bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded border border-neutral-200/70 dark:border-slate-700/70">
                     {project.code_id}
                 </span>
             )}
@@ -204,7 +204,7 @@ function FeaturedSpotlightCard({
                             {project.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="text-xs text-neutral-600 dark:text-neutral-500 bg-neutral-50 dark:bg-neutral-800/70 px-2 py-0.5 rounded border border-neutral-200/80 dark:border-neutral-700/70"
+                                    className="text-xs text-neutral-600 dark:text-neutral-500 bg-neutral-50 dark:bg-neutral-800/70 px-2 py-0.5 rounded border border-neutral-200/80 dark:border-slate-700/70"
                                 >
                                     {tag}
                                 </span>
@@ -356,7 +356,7 @@ export default function ProjectsPage({
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-70 group-hover:opacity-45 transition-opacity duration-300" />
                                     {(project.status || project.category_label) && (
-                                        <span className="absolute top-3 right-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-background/85 text-primary backdrop-blur-md border border-neutral-200/70 dark:border-neutral-700/70 shadow-sm">
+                                        <span className="absolute top-3 right-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-background/85 text-primary backdrop-blur-md border border-neutral-200/70 dark:border-slate-700/70 shadow-sm">
                                             {project.status || project.category_label}
                                         </span>
                                     )}
@@ -450,7 +450,7 @@ export default function ProjectsPage({
                                 type="button"
                                 onClick={() => setSelectedProject(null)}
                                 aria-label={messages.projects.close}
-                                className="absolute top-4 right-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-primary transition-colors"
+                                className="absolute top-4 right-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-slate-300 hover:text-primary transition-colors"
                             >
                                 <X className="h-4 w-4" />
                             </button>

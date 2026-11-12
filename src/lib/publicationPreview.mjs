@@ -1,4 +1,4 @@
-const DEFAULT_PREVIEW_LIMIT = 4;
+const DEFAULT_PREVIEW_LIMIT = 8;
 
 function normalizeFilenames(value, split) {
   if (typeof value !== 'string') return [];

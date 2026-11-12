@@ -14,10 +14,10 @@ test('normalizes semicolon-separated previews and removes duplicates', () => {
   );
 });
 
-test('limits previews to the first four unique filenames', () => {
+test('limits previews to the first eight unique filenames', () => {
   assert.deepEqual(
-    parsePublicationPreviews('a.png;b.png;c.png;d.png;e.png', undefined),
-    ['a.png', 'b.png', 'c.png', 'd.png'],
+    parsePublicationPreviews('a.png;b.png;c.png;d.png;e.png;f.png;g.png;h.png;i.png', undefined),
+    ['a.png', 'b.png', 'c.png', 'd.png', 'e.png', 'f.png', 'g.png', 'h.png'],
   );
 });
 
