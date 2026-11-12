@@ -11,7 +11,7 @@ HugoIO 保持独立：本仓库不会替代或修改该主页、其仓库及部�
 ## 内容位置
 
 - 站点信息与导航：`content/config.toml`；首页结构：`content/about.toml`。
-- 简介、动态与简历：`content/bio.md`、`content/news.toml`、`content/cv.md`。
+- 简介、动态与简历：`content/bio.md`、`content/news.toml`、`content/cv.toml`。
 - 论文：`content/publications.bib`；研究与工具：`content/research.toml`、`content/tooling.toml`。
 - 奖项与学术服务：`content/awards.toml`、`content/services.toml`。
 - 中文内容：`content_zh/`；缺少本地化文件时回退至 `content/`。

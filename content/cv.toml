@@ -1,4 +1,69 @@
-type = "text"
+type = "card"
 title = "CV"
-description = "Academic experience, education, honors, talks, and professional service."
-source = "cv.md"
+description = "Academic experience, education, and talks. Honors and reviewing service are listed on the **Awards** and **Services** pages."
+
+# Items within each section are sorted automatically by date (newest first).
+# Each item: date -> location -> title -> subtitle (institution / event) -> content.
+
+[[sections]]
+title = "Experience"
+icon = "briefcase"
+
+[[sections.items]]
+date = "2025.07 - Present"
+location = "Hangzhou, China"
+title = "Lecturer"
+subtitle = "School of Environmental and Resource Sciences, Zhejiang A&F University"
+content = "Research direction: effects of land-cover change and forest age dynamics on forest carbon cycles."
+
+[[sections.items]]
+date = "2024.11 - 2025.05"
+location = "Joensuu, Finland"
+title = "Visiting Scholar"
+subtitle = "Faculty of Science, Forestry and Technology, University of Eastern Finland"
+content = "Research direction: deep learning and artificial intelligence applications in Finnish forestry."
+
+[[sections]]
+title = "Education"
+icon = "education"
+
+[[sections.items]]
+date = "2021.09 - 2025.06"
+location = "Hangzhou, China"
+title = "Ph.D. in Forestry"
+subtitle = "Zhejiang A&F University"
+
+[[sections.items]]
+date = "2018.09 - 2021.06"
+location = "Hangzhou, China"
+title = "M.S. in Forest Management"
+subtitle = "Zhejiang A&F University"
+
+[[sections.items]]
+date = "2014.09 - 2018.06"
+location = "Nanjing, China"
+title = "B.S. in Geographic Information Science"
+subtitle = "Nanjing Tech University"
+
+[[sections]]
+title = "Talks"
+icon = "talk"
+
+[[sections.items]]
+date = "2025.11.07 - 2025.11.09"
+location = "Hangzhou, China"
+title = "Integrated multi-spectral indices and LandTrendr for time-series forest age estimation"
+subtitle = "The 2nd Zhejiang Remote Sensing Science Frontier Interdisciplinary Forum"
+tags = ["Invited talk"]
+
+[[sections.items]]
+date = "2021.11.28"
+location = "Hangzhou, China"
+title = "Spatiotemporal LUCC Simulation under RCP Scenarios Based on the BPNN_CA_Markov Model: A Case Study of Bamboo Forest in Anji County"
+subtitle = "3rd International Symposium on Carbon Cycling, Sequestration and Emission Reduction in Agricultural and Forest Ecosystems"
+
+[[sections.items]]
+date = "2021.09.25 - 2021.09.26"
+location = "Online"
+title = "Spatiotemporal land-use change simulation under different climate scenarios using a CA-Markov model: A case study of bamboo forest in Anji County"
+subtitle = "Youth Academic Forum of National Remote Sensing Bulletin"

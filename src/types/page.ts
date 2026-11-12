@@ -22,9 +22,17 @@ export interface CardItem {
     tags?: string[];
     link?: string;
     image?: string;
+    location?: string;
+}
+
+export interface CardSection {
+    title: string;
+    icon?: string;
+    items: CardItem[];
 }
 
 export interface CardPageConfig extends BasePageConfig {
     type: 'card';
-    items: CardItem[];
+    items?: CardItem[];
+    sections?: CardSection[];
 }

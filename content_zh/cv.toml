@@ -1,4 +1,69 @@
-type = "text"
+type = "card"
 title = "简历"
-description = "学术经历、教育背景、荣誉奖励、学术报告与专业服务。"
-source = "cv.md"
+description = "工作经历、教育背景与学术报告。荣誉奖励与审稿服务请见 **获奖** 与 **服务** 页面。"
+
+# 每个分区内的条目会按时间自动倒序排列（最新在前）。
+# 每条显示顺序：时间 -> 地点 -> 标题 -> 副标题（单位 / 会议）-> 说明。
+
+[[sections]]
+title = "工作经历"
+icon = "briefcase"
+
+[[sections.items]]
+date = "2025.07 - 至今"
+location = "中国杭州"
+title = "讲师"
+subtitle = "浙江农林大学 环境与资源学院"
+content = "研究方向：土地覆盖变化及林龄动态对森林碳循环的影响分析研究。"
+
+[[sections.items]]
+date = "2024.11 - 2025.05"
+location = "芬兰约恩苏"
+title = "访问学者"
+subtitle = "东芬兰大学 林学院"
+content = "研究方向：深度学习与人工智能在芬兰林业中的应用。"
+
+[[sections]]
+title = "教育背景"
+icon = "education"
+
+[[sections.items]]
+date = "2021.09 - 2025.06"
+location = "中国杭州"
+title = "林学博士"
+subtitle = "浙江农林大学"
+
+[[sections.items]]
+date = "2018.09 - 2021.06"
+location = "中国杭州"
+title = "森林经理学硕士"
+subtitle = "浙江农林大学"
+
+[[sections.items]]
+date = "2014.09 - 2018.06"
+location = "中国南京"
+title = "地理信息科学学士"
+subtitle = "南京工业大学"
+
+[[sections]]
+title = "学术报告"
+icon = "talk"
+
+[[sections.items]]
+date = "2025.11.07 - 2025.11.09"
+location = "中国杭州"
+title = "整合多光谱指数与 LandTrendr 算法的时间序列林龄估算方法"
+subtitle = "第二届浙江省遥感科学前沿交叉论坛"
+tags = ["特邀报告"]
+
+[[sections.items]]
+date = "2021.11.28"
+location = "中国杭州"
+title = "Spatiotemporal LUCC Simulation under RCP Scenarios Based on the BPNN_CA_Markov Model: A Case Study of Bamboo Forest in Anji County"
+subtitle = "3rd International Symposium on Carbon Cycling, Sequestration and Emission Reduction in Agricultural and Forest Ecosystems"
+
+[[sections.items]]
+date = "2021.09.25 - 2021.09.26"
+location = "线上"
+title = "CA 耦合 Markov 模型的不同气候情景下土地利用变化时空模拟：以安吉县竹林为例"
+subtitle = "《遥感学报》青年学术论坛暨第六届全国遥感地理信息研究生论坛"
