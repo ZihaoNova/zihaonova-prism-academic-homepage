@@ -14,6 +14,8 @@ location_details = [
   "浙江农林大学",
   "环境与资源学院"
 ]
+institutional_profile = "https://et.zafu.edu.cn/info/1206/23856.htm"
+researchgate = "https://www.researchgate.net/profile/Zihao-Huang-8?ev=hdr_xprf"
 
 [[navigation]]
 title = "关于"

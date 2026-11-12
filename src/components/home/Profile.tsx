@@ -28,6 +28,30 @@ const OrcidIcon = ({ className }: { className?: string }) => (
     </svg>
 );
 
+// Custom University / Institutional Profile icon (FontAwesome fa-university solid)
+const UniversityIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 512 512"
+        fill="currentColor"
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M496 128v16a8 8 0 0 1-8 8h-24v12c0 6.627-5.373 12-12 12H60c-6.627 0-12-5.373-12-12v-12H24a8 8 0 0 1-8-8v-16a8 8 0 0 1 4.941-7.392l232-88a7.996 7.996 0 0 1 6.118 0l232 88A8 8 0 0 1 496 128zm-24 304H40c-13.255 0-24 10.745-24 24v16a8 8 0 0 0 8 8h464a8 8 0 0 0 8-8v-16c0-13.255-10.745-24-24-24zM96 192v192H64V192h32zm128 0v192h-32V192h32zm128 0v192h-32V192h32zm128 0v192h-32V192h32z" />
+    </svg>
+);
+
+// Custom ResearchGate icon component
+const ResearchGateIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M19.586 0c-.818 0-1.508.19-2.072.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 0 0-.112.437 7.065 7.065 0 0 0-1.035-.115c-1.092 0-2.072.24-2.943.722a5.706 5.706 0 0 0-2.128 2.016 5.64 5.64 0 0 0-.793 2.977c0 .92.17 1.768.513 2.544.343.776.837 1.433 1.482 1.97.646.538 1.42.94 2.32 1.208-.12.443-.18.892-.18 1.347 0 .807.18 1.517.54 2.13.36.613.88 1.09 1.56 1.43.68.34 1.49.51 2.43.51.98 0 1.83-.17 2.55-.51.72-.34 1.27-.817 1.65-1.43.38-.613.57-1.323.57-2.13 0-.613-.12-1.18-.36-1.7-.24-.52-.58-.96-1.02-1.32-.44-.36-.96-.64-1.56-.84.28-.48.42-1.02.42-1.62 0-.64-.15-1.22-.45-1.74a3.17 3.17 0 0 0-1.26-1.2c-.54-.32-1.19-.48-1.95-.48-.68 0-1.31.14-1.89.42-.58.28-1.04.68-1.38 1.2-.34.52-.51 1.13-.51 1.83 0 .76.18 1.42.54 1.98.36.56.88.99 1.56 1.29.68.3 1.49.45 2.43.45.68 0 1.32-.1 1.92-.3.6-.2 1.1-.48 1.5-.84.4-.36.68-.78.84-1.26h-4.26v-1.62h6.42c.08.32.12.66.12 1.02 0 1.04-.26 1.96-.78 2.76-.52.8-1.24 1.42-2.16 1.86-.92.44-1.98.66-3.18.66-1.32 0-2.48-.25-3.48-.75-1-.5-1.79-1.21-2.37-2.13-.58-.92-.87-2.02-.87-3.3 0-1.36.31-2.53.93-3.51.62-.98 1.49-1.73 2.61-2.25 1.12-.52 2.44-.78 3.96-.78.84 0 1.62.09 2.34.27.72.18 1.34.45 1.86.81v-1.56c0-.64-.17-1.12-.51-1.44-.34-.32-.87-.48-1.59-.48-.64 0-1.15.12-1.53.36-.38.24-.62.59-.72 1.05l-1.98-.3c.22-.84.69-1.49 1.41-1.95.72-.46 1.66-.69 2.82-.69 1.44 0 2.52.34 3.24 1.02.72.68 1.08 1.66 1.08 2.94v6.6h-1.8v-1.32c-.36.44-.82.8-1.38 1.08z" />
+    </svg>
+);
+
 interface ProfileProps {
     author: SiteConfig['author'];
     social: SiteConfig['social'];
@@ -83,10 +107,20 @@ export default function Profile({ author, social, features, researchInterests }:
             icon: MapPinIcon,
             isLocation: true,
         }] : []),
+        ...(social.institutional_profile ? [{
+            name: messages.profile.institutionalProfile,
+            href: social.institutional_profile as string,
+            icon: UniversityIcon,
+        }] : []),
         ...(social.google_scholar ? [{
             name: 'Google Scholar',
-            href: social.google_scholar,
+            href: social.google_scholar as string,
             icon: AcademicCapIcon,
+        }] : []),
+        ...(social.researchgate ? [{
+            name: 'ResearchGate',
+            href: social.researchgate as string,
+            icon: ResearchGateIcon,
         }] : []),
         ...(social.orcid ? [{
             name: 'ORCID',
@@ -160,6 +194,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                         : 'text-neutral-600 dark:text-neutral-400 hover:text-accent'
                                         }`}
                                     aria-label={link.name}
+                            title={link.name}
                                 >
                                     {isAddressPinned ? (
                                         <MapPinSolidIcon className="h-5 w-5" />
@@ -237,6 +272,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                         : 'text-neutral-600 dark:text-neutral-400 hover:text-accent'
                                         }`}
                                     aria-label={link.name}
+                            title={link.name}
                                 >
                                     {isEmailPinned ? (
                                         <EnvelopeSolidIcon className="h-5 w-5" />
@@ -297,6 +333,7 @@ export default function Profile({ author, social, features, researchInterests }:
                             rel="noopener noreferrer"
                             className="p-2 sm:p-2 text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors duration-200"
                             aria-label={link.name}
+                            title={link.name}
                         >
                             <IconComponent className="h-5 w-5" />
                         </a>
