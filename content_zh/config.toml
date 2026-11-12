@@ -30,16 +30,16 @@ target = "research"
 href = "/research"
 
 [[navigation]]
+title = "项目"
+type = "page"
+target = "projects"
+href = "/projects"
+
+[[navigation]]
 title = "论文"
 type = "page"
 target = "publications"
 href = "/publications"
-
-[[navigation]]
-title = "工具"
-type = "page"
-target = "tooling"
-href = "/tooling"
 
 [[navigation]]
 title = "获奖"
@@ -48,7 +48,7 @@ target = "awards"
 href = "/awards"
 
 [[navigation]]
-title = "服务"
+title = "服务与工具"
 type = "page"
 target = "services"
 href = "/services"

@@ -2,7 +2,7 @@ import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL, URL } from 'node:url';
 
-const routes = ['research', 'publications', 'tooling', 'awards', 'services', 'cv'];
+const routes = ['research', 'projects', 'publications', 'awards', 'services', 'cv'];
 const requiredPages = ['index.html', ...routes.map(route => `${route}/index.html`)];
 const requiredAssets = [
   'profile/github-avatar.png',

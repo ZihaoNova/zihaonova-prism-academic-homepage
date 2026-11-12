@@ -1,0 +1,119 @@
+type = "projects"
+title = "项目"
+description = "代表性研究专题、科研基金项目及专利软著成果展示（具体课题名称与专利软著编号将在后续素材补充后更新）。"
+
+[[categories]]
+id = "themes"
+label = "研究专题"
+
+[[categories]]
+id = "grants"
+label = "科研课题"
+
+[[categories]]
+id = "ip"
+label = "专利与软著"
+
+[[items]]
+id = "forest-carbon"
+title = "森林碳储量与净生态系统生产力（NEP）预测"
+category = "themes"
+category_label = "研究专题"
+subtitle = "BIOME-BGC / InTEC、PLS-SEM、SSP-RCP 情景"
+date = "2023 - 至今"
+role = "核心主线"
+status = "重点专题"
+featured = true
+home_featured = true
+image = "/research/forest-carbon.png"
+summary = "耦合土地覆盖变化、林龄动态与生态过程模型，开展亚热带森林碳储量反演与未来 NEP 情景预测及归因分析。"
+description = """整合多源遥感监测、LUCC 情景模拟、林龄演变轨迹与生态过程模型（BIOME-BGC、InTEC），定量揭示气候变化、人类活动与林龄动态在 SSP-RCP 情景下对区域森林碳汇与碳通量的耦合调控机制。"""
+tags = ["森林碳汇", "NEP", "BIOME-BGC", "InTEC", "SSP-RCP"]
+
+[[items.links]]
+label = "AFM 2025 论文"
+url = "https://linkinghub.elsevier.com/retrieve/pii/S0168192325000826"
+kind = "paper"
+
+[[items]]
+id = "forest-age"
+title = "基于扰动与恢复检测的时间序列林龄估算"
+category = "themes"
+category_label = "研究专题"
+subtitle = "LandTrendr / CCDC、多光谱时间序列、机器学习"
+date = "2021 - 至今"
+role = "核心主线"
+status = "核心专题"
+home_featured = true
+image = "/research/forest-age.png"
+summary = "融合森林扰动恢复时间序列检测与机器学习建模，实现亚热带森林像素级林龄高精度制图。"
+description = """基于 Landsat 长时间序列遥感影像，结合 LandTrendr 与 CCDC 等扰动检测算法提取森林干扰与恢复历史，并耦合随机森林等机器学习方法构建亚热带森林空间显式林龄产品。"""
+tags = ["林龄估算", "LandTrendr", "CCDC", "随机森林"]
+
+[[items.links]]
+label = "IEEE TGRS 2023"
+url = "https://ieeexplore.ieee.org/document/10272710/"
+kind = "paper"
+
+[[items]]
+id = "lucc-simulation"
+title = "气候变化与人类活动耦合下的 LUCC 模拟"
+category = "themes"
+category_label = "研究专题"
+subtitle = "FLUS / PLUS-SD、元胞自动机、情景模拟"
+date = "2020 - 至今"
+role = "核心主线"
+status = "核心专题"
+home_featured = true
+image = "/research/lucc-simulation.png"
+summary = "耦合元胞自动机、神经网络与气候人类驱动因子，模拟不同气候与社会经济情景下的土地覆盖时空演变。"
+description = """构建并应用 BPNN-CA-Markov、FLUS 及 PLUS-SD 等多情景土地利用模拟框架，整合多期遥感分类数据与气候地形协变量，预测 RCP 与 SSP 情景下的森林与景观格局动态。"""
+tags = ["LUCC", "元胞自动机", "FLUS", "情景模拟"]
+
+[[items.links]]
+label = "Remote Sensing 2022"
+url = "https://www.mdpi.com/2072-4292/14/7/1698"
+kind = "paper"
+
+[[items]]
+id = "grant-placeholder-1"
+title = "【版式示例】纵向 / 横向科研课题展示卡"
+category = "grants"
+category_label = "科研课题"
+subtitle = "待填入具体课题名称与资助来源"
+date = "2025 - 至今"
+role = "主持（示例）"
+funding = "资助机构（待补充）"
+code_id = "项目编号待填"
+status = "示例模板"
+summary = "用于展示主持或参与的科研基金课题，支持显示项目角色、资助机构、立项编号、执行周期及关联论文与代码。"
+description = "后续可在 content_zh/projects.toml 中将该条示例直接替换为您的真实科研项目名称、项目编号、资助渠道与研究内容。"
+tags = ["科研项目", "森林碳循环", "定量遥感"]
+
+[[items]]
+id = "patent-placeholder"
+title = "【版式示例】国家发明专利（已授权 1 项）"
+category = "ip"
+category_label = "发明专利"
+subtitle = "第一发明人（与个人简介同步）"
+date = "已授权"
+role = "第一发明人"
+code_id = "专利号待补充"
+status = "已授权"
+summary = "用于展示以第一发明人获授权的国家发明专利，后续可补充专利正式名称、授权公告号及检索链接。"
+description = "后续在 content_zh/projects.toml 中填入真实专利名称、专利号与技术简介即可完整呈现。"
+tags = ["发明专利", "遥感算法", "林业监测"]
+
+[[items]]
+id = "software-placeholder"
+title = "【版式示例】登记软件著作权（5 项）"
+category = "ip"
+category_label = "软件著作权"
+subtitle = "地理空间分析与森林碳汇建模软件系统"
+date = "已登记"
+role = "核心开发者"
+code_id = "登记号待补充"
+status = "共 5 项"
+summary = "用于展示登记的软件著作权及开源代码仓库，既可汇总展示，也可拆分为多张独立项目卡片。"
+description = "可根据需要拆分成 5 张独立软著卡片，并附上对应的 GitHub 仓库或说明文档链接。"
+tags = ["软件著作权", "Python", "GEE"]

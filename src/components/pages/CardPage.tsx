@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-import { Award, Briefcase, GraduationCap, MapPin, Mic, Users, type LucideIcon } from 'lucide-react';
+import { Award, Briefcase, Code2, GraduationCap, MapPin, Mic, Users, Wrench, type LucideIcon } from 'lucide-react';
 import { CardItem, CardPageConfig, CardSection } from '@/types/page';
 import { withBasePath } from '@/lib/sitePath.mjs';
 
@@ -15,6 +15,8 @@ const sectionIcons: Record<string, LucideIcon> = {
     talk: Mic,
     award: Award,
     users: Users,
+    wrench: Wrench,
+    code: Code2,
 };
 
 // Sort key from the first "YYYY" or "YYYY.MM" in the date string (newest first).
@@ -130,6 +132,100 @@ const markdownComponents = {
     ),
 };
 
+function SectionHeader({ section }: { section: CardSection }) {
+    const Icon = (section.icon && sectionIcons[section.icon]) || Briefcase;
+    return (
+        <h2 className="flex items-center gap-3 text-2xl font-serif font-bold text-primary mb-6">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                <Icon className="h-5 w-5" />
+            </span>
+            {section.title}
+        </h2>
+    );
+}
+
+function GridSections({ sections, embedded }: { sections: CardSection[]; embedded: boolean }) {
+    return (
+        <div className={embedded ? 'space-y-8' : 'space-y-12'}>
+            {sections.map((section, sectionIndex) => (
+                <motion.section
+                    key={section.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.1 * sectionIndex }}
+                >
+                    <SectionHeader section={section} />
+                    <div className={`grid ${section.columns === 2 && !embedded ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'} ${embedded ? 'gap-4' : 'gap-6'}`}>
+                        {section.items.map((item, index) => (
+                            <StandardCard key={`${item.title}-${index}`} item={item} index={index} embedded={embedded} />
+                        ))}
+                    </div>
+                </motion.section>
+            ))}
+        </div>
+    );
+}
+
+function StandardCard({ item, index, embedded }: { item: CardItem; index: number; embedded: boolean }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 * index }}
+            className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01] flex flex-col`}
+        >
+            {item.image && (
+                <div className="relative mb-4 aspect-video overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800">
+                    <Image
+                        src={withBasePath(item.image)}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        sizes={embedded ? "(max-width: 1024px) 100vw, 640px" : "(max-width: 1024px) 100vw, 768px"}
+                    />
+                </div>
+            )}
+            <div className="flex justify-between items-start gap-2 mb-2">
+                <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
+                {item.date && (
+                    <span className="shrink-0 text-sm text-neutral-500 font-medium bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
+                        {item.date}
+                    </span>
+                )}
+            </div>
+            {item.subtitle && (
+                <p className={`${embedded ? "text-sm" : "text-base"} text-accent font-medium mb-3`}>{item.subtitle}</p>
+            )}
+            {item.content && (
+                <div className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-500 leading-relaxed flex-1`}>
+                    <ReactMarkdown components={markdownComponents}>
+                        {item.content}
+                    </ReactMarkdown>
+                </div>
+            )}
+            {item.tags && (
+                <div className="flex flex-wrap gap-2 mt-4">
+                    {item.tags.map(tag => (
+                        <span key={tag} className="text-xs text-neutral-500 bg-neutral-50 dark:bg-neutral-800/50 px-2 py-1 rounded border border-neutral-100 dark:border-neutral-800">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            )}
+            {item.link && (
+                <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex text-sm font-medium text-accent transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
+                >
+                    Learn more
+                </a>
+            )}
+        </motion.div>
+    );
+}
+
 export default function CardPage({ config, embedded = false }: { config: CardPageConfig; embedded?: boolean }) {
     return (
         <motion.div
@@ -149,70 +245,17 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
             </div>
 
             {config.sections && config.sections.length > 0 && (
-                <TimelineSections sections={config.sections} embedded={embedded} />
+                config.layout === 'grid'
+                    ? <GridSections sections={config.sections} embedded={embedded} />
+                    : <TimelineSections sections={config.sections} embedded={embedded} />
             )}
 
             {config.items && config.items.length > 0 && (
-            <div className={`grid ${embedded ? "gap-4" : "gap-6"}`}>
-                {config.items.map((item, index) => (
-                    <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.1 * index }}
-                        className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01]`}
-                    >
-                        {item.image && (
-                            <div className="relative mb-4 aspect-video overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800">
-                                <Image
-                                    src={withBasePath(item.image)}
-                                    alt={item.title}
-                                    fill
-                                    className="object-cover"
-                                    sizes={embedded ? "(max-width: 1024px) 100vw, 640px" : "(max-width: 1024px) 100vw, 768px"}
-                                />
-                            </div>
-                        )}
-                        <div className="flex justify-between items-start mb-2">
-                            <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
-                            {item.date && (
-                                <span className="text-sm text-neutral-500 font-medium bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
-                                    {item.date}
-                                </span>
-                            )}
-                        </div>
-                        {item.subtitle && (
-                            <p className={`${embedded ? "text-sm" : "text-base"} text-accent font-medium mb-3`}>{item.subtitle}</p>
-                        )}
-                        {item.content && (
-                            <div className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-500 leading-relaxed`}>
-                                <ReactMarkdown components={markdownComponents}>
-                                    {item.content}
-                                </ReactMarkdown>
-                            </div>
-                        )}
-                        {item.tags && (
-                            <div className="flex flex-wrap gap-2 mt-4">
-                                {item.tags.map(tag => (
-                                    <span key={tag} className="text-xs text-neutral-500 bg-neutral-50 dark:bg-neutral-800/50 px-2 py-1 rounded border border-neutral-100 dark:border-neutral-800">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
-                        {item.link && (
-                            <a
-                                href={item.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mt-4 inline-flex text-sm font-medium text-accent transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
-                            >
-                                Learn more
-                            </a>
-                        )}
-                    </motion.div>
-                ))}
-            </div>
+                <div className={`grid ${embedded ? "gap-4" : "gap-6"}`}>
+                    {config.items.map((item, index) => (
+                        <StandardCard key={index} item={item} index={index} embedded={embedded} />
+                    ))}
+                </div>
             )}
         </motion.div>
     );

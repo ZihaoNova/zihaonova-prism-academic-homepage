@@ -30,8 +30,18 @@ export interface LocaleMessages {
   home: {
     about: string;
     news: string;
+    featuredProjects: string;
     selectedPublications: string;
     viewAll: string;
+  };
+  projects: {
+    featuredBadge: string;
+    viewDetails: string;
+    close: string;
+    noProjects: string;
+    summaryTotal: string;
+    role: string;
+    funding: string;
   };
   publications: {
     searchPlaceholder: string;
@@ -85,8 +95,18 @@ const en: LocaleMessages = {
   home: {
     about: 'About',
     news: 'News',
+    featuredProjects: 'Featured Projects',
     selectedPublications: 'Selected Publications',
     viewAll: 'View All',
+  },
+  projects: {
+    featuredBadge: 'Featured',
+    viewDetails: 'Details',
+    close: 'Close',
+    noProjects: 'No projects in this category yet.',
+    summaryTotal: 'items',
+    role: 'Role',
+    funding: 'Funding',
   },
   publications: {
     searchPlaceholder: 'Search publications...',
@@ -140,8 +160,18 @@ const zh: LocaleMessages = {
   home: {
     about: '关于',
     news: '动态',
+    featuredProjects: '代表性项目',
     selectedPublications: '代表性论文',
     viewAll: '查看全部',
+  },
+  projects: {
+    featuredBadge: '重点项目',
+    viewDetails: '查看详情',
+    close: '关闭',
+    noProjects: '当前分类下暂无项目。',
+    summaryTotal: '项',
+    role: '角色',
+    funding: '资助来源',
   },
   publications: {
     searchPlaceholder: '搜索论文...',

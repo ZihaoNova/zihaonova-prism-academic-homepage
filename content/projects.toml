@@ -1,0 +1,119 @@
+type = "projects"
+title = "Projects"
+description = "Representative research themes, funded research grants, and software/patent outputs. (Grant and patent details are placeholders awaiting final project materials.)"
+
+[[categories]]
+id = "themes"
+label = "Research Themes"
+
+[[categories]]
+id = "grants"
+label = "Funded Grants"
+
+[[categories]]
+id = "ip"
+label = "Software & Patents"
+
+[[items]]
+id = "forest-carbon"
+title = "Forest Carbon Storage & NEP Projection"
+category = "themes"
+category_label = "Research Theme"
+subtitle = "BIOME-BGC / InTEC, PLS-SEM, SSP-RCP Scenarios"
+date = "2023 - Present"
+role = "Lead Researcher"
+status = "Core Line"
+featured = true
+home_featured = true
+image = "/research/forest-carbon.png"
+summary = "Coupling LUCC, forest age dynamics, and ecological process models to project subtropical forest carbon storage and net ecosystem productivity."
+description = """This research line integrates multi-source remote sensing, LUCC scenario modeling, forest aging trajectories, and process-based models (BIOME-BGC and InTEC) to quantify how climate change, human activities, and stand age jointly regulate regional forest carbon sinks and NEP dynamics under SSP-RCP pathways."""
+tags = ["Forest Carbon", "NEP", "BIOME-BGC", "InTEC", "SSP-RCP"]
+
+[[items.links]]
+label = "AFM 2025 Paper"
+url = "https://linkinghub.elsevier.com/retrieve/pii/S0168192325000826"
+kind = "paper"
+
+[[items]]
+id = "forest-age"
+title = "Forest Age Estimation from Disturbance & Recovery"
+category = "themes"
+category_label = "Research Theme"
+subtitle = "LandTrendr / CCDC, Multi-spectral Time Series, ML"
+date = "2021 - Present"
+role = "Lead Researcher"
+status = "Core Line"
+home_featured = true
+image = "/research/forest-age.png"
+summary = "Time-series forest age mapping by fusing spectral disturbance/recovery trajectories with machine learning across subtropical forests."
+description = """Constructs continuous pixel-level disturbance and recovery histories from Landsat time series using LandTrendr and CCDC-style change detection, coupled with random forest and deep learning models for spatially explicit forest age mapping."""
+tags = ["Forest Age", "LandTrendr", "CCDC", "Random Forest"]
+
+[[items.links]]
+label = "IEEE TGRS 2023"
+url = "https://ieeexplore.ieee.org/document/10272710/"
+kind = "paper"
+
+[[items]]
+id = "lucc-simulation"
+title = "LUCC Simulation under Climate & Human Effects"
+category = "themes"
+category_label = "Research Theme"
+subtitle = "FLUS / PLUS-SD, Cellular Automata, Scenario Modeling"
+date = "2020 - Present"
+role = "Lead Researcher"
+status = "Core Line"
+home_featured = true
+image = "/research/lucc-simulation.png"
+summary = "Scenario-driven land use and cover change simulation coupling cellular automata, artificial neural networks, and climate-human drivers."
+description = """Develops and applies BPNN-CA-Markov, FLUS, and PLUS-SD frameworks driven by multi-phase remote sensing and socio-climatic covariates to simulate future forest and landscape transitions under contrasting RCP and SSP scenarios."""
+tags = ["LUCC", "Cellular Automata", "FLUS", "Scenario Modeling"]
+
+[[items.links]]
+label = "Remote Sensing 2022"
+url = "https://www.mdpi.com/2072-4292/14/7/1698"
+kind = "paper"
+
+[[items]]
+id = "grant-placeholder-1"
+title = "[Sample Placeholder] Funded Research Grant Card"
+category = "grants"
+category_label = "Funded Grant"
+subtitle = "To be updated with exact project title & funding agency"
+date = "2025 - Present"
+role = "PI (Template)"
+funding = "Funding Agency (Placeholder)"
+code_id = "Grant No. TBD"
+status = "Template"
+summary = "Layout placeholder for PI / Co-PI research grants showing funding agency, grant ID, timeline, role badge, and related publications."
+description = "Replace this entry in content/projects.toml with your actual research grant title, grant ID, funding source, duration, and summary."
+tags = ["Grant", "Forest Carbon", "Remote Sensing"]
+
+[[items]]
+id = "patent-placeholder"
+title = "[Sample Placeholder] National Invention Patent (1 Authorized)"
+category = "ip"
+category_label = "Invention Patent"
+subtitle = "Primary Inventor (as listed in About)"
+date = "Authorized"
+role = "Primary Inventor"
+code_id = "Patent No. TBD"
+status = "Authorized"
+summary = "Layout placeholder for your authorized Chinese national invention patent. Add official title, patent number, and public link when ready."
+description = "Replace this entry in content/projects.toml with your authorized national invention patent details."
+tags = ["Invention Patent", "Remote Sensing", "Forestry"]
+
+[[items]]
+id = "software-placeholder"
+title = "[Sample Placeholder] Registered Software Copyrights (5 Items)"
+category = "ip"
+category_label = "Software Copyright"
+subtitle = "Geospatial & Forest Modeling Toolkits"
+date = "Registered"
+role = "Developer"
+code_id = "Reg. No. TBD"
+status = "5 Copyrights"
+summary = "Layout placeholder for your 5 registered software copyrights and open-source repositories. Supports multiple cards or links to GitHub."
+description = "You can split this into individual cards for each software copyright or link directly to GitHub repositories."
+tags = ["Software Copyright", "Python", "GEE"]

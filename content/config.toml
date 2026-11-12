@@ -55,16 +55,16 @@ target = "research"
 href = "/research"
 
 [[navigation]]
+title = "Projects"
+type = "page"
+target = "projects"
+href = "/projects"
+
+[[navigation]]
 title = "Publications"
 type = "page"
 target = "publications"
 href = "/publications"
-
-[[navigation]]
-title = "Tooling"
-type = "page"
-target = "tooling"
-href = "/tooling"
 
 [[navigation]]
 title = "Awards"
@@ -73,7 +73,7 @@ target = "awards"
 href = "/awards"
 
 [[navigation]]
-title = "Services"
+title = "Services & Tools"
 type = "page"
 target = "services"
 href = "/services"

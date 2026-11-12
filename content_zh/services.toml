@@ -1,10 +1,45 @@
 type = "card"
-title = "服务"
-description = "专业审稿与学术服务。"
+layout = "grid"
+title = "服务与工具"
+description = "专业审稿服务与可复现地理空间研究工作流。"
 
-[[items]]
+[[sections]]
+title = "学术服务"
+icon = "users"
+columns = 1
+
+[[sections.items]]
 title = "期刊审稿人"
 subtitle = "遥感、林业、生态与环境科学相关期刊"
 date = "2021.09 - 至今"
 content = "担任多个 SCI 期刊审稿人，包括 **International Journal of Applied Earth Observation and Geoinformation**、**Agricultural and Forest Meteorology**、**Journal of Cleaner Production**、**Cell Reports**、**CATENA**、**Ecological Indicators**、**Journal of Environmental Management** 和 **Urban Climate**。"
 tags = ["同行评议", "遥感", "生态", "环境科学"]
+
+[[sections]]
+title = "科研工具与工作流"
+icon = "wrench"
+columns = 2
+
+[[sections.items]]
+title = "Google Earth Engine 工作流"
+subtitle = "多源遥感与时间序列分析"
+content = "面向 Landsat、Sentinel、气候、地形和生态协变量的云端预处理与特征提取。"
+tags = ["GEE", "遥感", "时间序列"]
+
+[[sections.items]]
+title = "地理空间 Python 流水线"
+subtitle = "Rasterio、xarray、Dask 与批处理"
+content = "用于可扩展栅格处理、分块计算、情景数据准备和可复现空间分析的 Python 工作流。"
+tags = ["Python", "Rasterio", "xarray", "Dask"]
+
+[[sections.items]]
+title = "栅格验证与快速检查"
+subtitle = "大规模空间产品质量控制"
+content = "检查 CRS、nodata、空间范围、分辨率、类别值和批量输出完整性，服务 GeoTIFF 与 NetCDF 工作流。"
+tags = ["GeoTIFF", "NetCDF", "质量控制", "验证"]
+
+[[sections.items]]
+title = "机器学习与深度学习"
+subtitle = "RF、XGBoost、CNN 和 LSTM"
+content = "用于森林属性估算、扰动分析、土地变化驱动因子分析和遥感生态预测的建模工作流。"
+tags = ["RF", "XGBoost", "CNN", "LSTM"]

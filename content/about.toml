@@ -17,6 +17,13 @@ source = "bio.md"
 title = "About"
 
 [[sections]]
+id = "featured_projects"
+type = "projects"
+title = "Featured Projects"
+source = "projects.toml"
+limit = 3
+
+[[sections]]
 id = "featured_publications"
 type = "publications"
 title = "Selected Publications"

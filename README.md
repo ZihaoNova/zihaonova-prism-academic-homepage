@@ -12,8 +12,8 @@ HugoIO remains independent: this repository neither replaces nor modifies that h
 
 - Site metadata and navigation: `content/config.toml`; homepage layout: `content/about.toml`.
 - Biography, news, and CV: `content/bio.md`, `content/news.toml`, and `content/cv.toml`.
-- Publications: `content/publications.bib`; research and tooling: `content/research.toml` and `content/tooling.toml`.
-- Awards and service: `content/awards.toml` and `content/services.toml`.
+- Publications: `content/publications.bib`; research and projects: `content/research.toml` and `content/projects.toml`.
+- Awards, service, and tooling: `content/awards.toml` and `content/services.toml`.
 - Chinese content: `content_zh/`, falling back to `content/` when a localized file is missing.
 - Profile, research, and publication assets: `public/profile/`, `public/research/`, and `public/papers/`.
 

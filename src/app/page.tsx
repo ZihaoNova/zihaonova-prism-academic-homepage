@@ -3,18 +3,26 @@ import { getMarkdownContent, getBibtexContent, getTomlContent, getPageConfig } f
 import { parseBibTeX } from '@/lib/bibtexParser';
 import HomePageClient, { type HomePageLocaleData } from '@/components/home/HomePageClient';
 import { Publication } from '@/types/publication';
-import { BasePageConfig, PublicationPageConfig, TextPageConfig, CardPageConfig } from '@/types/page';
+import {
+  BasePageConfig,
+  PublicationPageConfig,
+  TextPageConfig,
+  CardPageConfig,
+  ProjectItem,
+  ProjectsPageConfig,
+} from '@/types/page';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
 
 interface SectionConfig {
   id: string;
-  type: 'markdown' | 'publications' | 'list';
+  type: 'markdown' | 'publications' | 'list' | 'projects';
   title?: string;
   source?: string;
   filter?: string;
   limit?: number;
   content?: string;
   publications?: Publication[];
+  projects?: ProjectItem[];
   items?: NewsItem[];
   sort_by?: string;
   sortBy?: string;
@@ -29,7 +37,8 @@ type PageData =
   | { type: 'about'; id: string; sections: SectionConfig[] }
   | { type: 'publication'; id: string; config: PublicationPageConfig; publications: Publication[] }
   | { type: 'text'; id: string; config: TextPageConfig; content: string }
-  | { type: 'card'; id: string; config: CardPageConfig };
+  | { type: 'card'; id: string; config: CardPageConfig }
+  | { type: 'projects'; id: string; config: ProjectsPageConfig };
 
 function processSections(sections: SectionConfig[], locale?: string): SectionConfig[] {
   return sections.map((section: SectionConfig) => {
@@ -86,6 +95,18 @@ function processSections(sections: SectionConfig[], locale?: string): SectionCon
           items: newsData?.news || [],
         };
       }
+      case 'projects': {
+        const projectsData = getTomlContent<ProjectsPageConfig>(section.source || 'projects.toml', locale);
+        const allProjects = projectsData?.items || [];
+        const homeSelected = allProjects.filter((p) => p.home_featured);
+        const featured = homeSelected.length > 0
+          ? homeSelected
+          : allProjects.filter((p) => p.image);
+        return {
+          ...section,
+          projects: featured.slice(0, section.limit || 3),
+        };
+      }
       default:
         return section;
     }
@@ -114,7 +135,7 @@ function loadPageDataForLocale(locale: string | undefined): HomePageLocaleData {
           return {
             type: 'about',
             id: item.target,
-            sections: processSections((rawConfig as { sections: SectionConfig[] }).sections || [], locale),
+            sections: processSections((rawConfig as { sections?: SectionConfig[] }).sections || [], locale),
           } as PageData;
         }
 
@@ -144,6 +165,14 @@ function loadPageDataForLocale(locale: string | undefined): HomePageLocaleData {
             type: 'card',
             id: item.target,
             config: pageConfig as CardPageConfig,
+          } as PageData;
+        }
+
+        if (pageConfig.type === 'projects') {
+          return {
+            type: 'projects',
+            id: item.target,
+            config: pageConfig as ProjectsPageConfig,
           } as PageData;
         }
 

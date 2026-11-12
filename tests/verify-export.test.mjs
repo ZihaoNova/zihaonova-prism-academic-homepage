@@ -9,7 +9,7 @@ import { promisify } from 'node:util';
 import { verifyExport } from '../scripts/verify-export.mjs';
 
 const basePath = '/zihaonova-prism-academic-homepage';
-const routes = ['research', 'publications', 'tooling', 'awards', 'services', 'cv'];
+const routes = ['research', 'projects', 'publications', 'awards', 'services', 'cv'];
 const assets = [
   'profile/github-avatar.png',
   'research/forest-age.png',
