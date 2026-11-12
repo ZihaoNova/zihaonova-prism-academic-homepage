@@ -17,6 +17,11 @@ interface PublicationImageCarouselProps {
 
 type Orientation = 'landscape' | 'portrait';
 
+type ImageDimensions = {
+    width: number;
+    height: number;
+};
+
 const SWIPE_THRESHOLD = 50;
 
 export default function PublicationImageCarousel({ images, title }: PublicationImageCarouselProps) {
@@ -24,7 +29,7 @@ export default function PublicationImageCarousel({ images, title }: PublicationI
     const prefersReducedMotion = useReducedMotion();
     const [activeIndex, setActiveIndex] = useState(0);
     const [failedImages, setFailedImages] = useState<Set<string>>(() => new Set());
-    const [orientations, setOrientations] = useState<Record<string, Orientation>>({});
+    const [dimensions, setDimensions] = useState<Record<string, ImageDimensions>>({});
 
     const availableImages = useMemo(
         () => images.filter((image, index) => image && images.indexOf(image) === index && !failedImages.has(image)),
@@ -35,7 +40,16 @@ export default function PublicationImageCarousel({ images, title }: PublicationI
         : 0;
     const currentImage = availableImages[currentIndex];
     const hasMultipleImages = availableImages.length > 1;
-    const orientation = currentImage ? orientations[currentImage] || 'landscape' : 'landscape';
+    const currentDimensions = currentImage ? dimensions[currentImage] : undefined;
+    const orientation: Orientation = currentDimensions
+        ? classifyPreviewOrientation(currentDimensions.width, currentDimensions.height)
+        : 'landscape';
+    const ratio = currentDimensions
+        ? currentDimensions.width / currentDimensions.height
+        : 4 / 3;
+    const aspectRatio = currentDimensions
+        ? `${currentDimensions.width} / ${currentDimensions.height}`
+        : '4 / 3';
 
     useEffect(() => {
         if (activeIndex !== currentIndex) setActiveIndex(currentIndex);
@@ -70,19 +84,20 @@ export default function PublicationImageCarousel({ images, title }: PublicationI
 
     return (
         <div
-            className="flex h-72 w-full md:w-48 flex-shrink-0 items-center justify-center"
+            className="flex h-72 sm:h-80 w-full md:w-64 flex-shrink-0 items-center justify-center"
+            style={{ containerType: 'size' }}
             role="region"
             aria-label={`${messages.publications.imageGallery}: ${title}`}
             tabIndex={hasMultipleImages ? 0 : -1}
             onKeyDown={handleKeyDown}
         >
             <div
-                className={cn(
-                    'relative overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800',
-                    orientation === 'portrait'
-                        ? 'h-full max-w-full aspect-[9/16]'
-                        : 'w-full max-w-96 md:max-w-full aspect-[4/3]',
-                )}
+                data-orientation={orientation}
+                className="relative overflow-hidden rounded-lg ring-1 ring-neutral-200/80 dark:ring-neutral-700/70 shadow-sm bg-white/80 dark:bg-neutral-900/40"
+                style={{
+                    width: `min(100cqw, calc(100cqh * ${ratio}))`,
+                    aspectRatio,
+                }}
             >
                 <AnimatePresence initial={false} mode="wait">
                     <motion.div
@@ -106,18 +121,25 @@ export default function PublicationImageCarousel({ images, title }: PublicationI
                             alt={`${title} - ${positionLabel}`}
                             fill
                             className="object-contain"
-                            sizes="(max-width: 768px) 100vw, 192px"
+                            sizes="(max-width: 768px) 100vw, 256px"
                             onLoad={(event) => {
                                 const image = event.currentTarget;
-                                const nextOrientation = classifyPreviewOrientation(
-                                    image.naturalWidth,
-                                    image.naturalHeight,
-                                );
-                                setOrientations((current) => (
-                                    current[currentImage] === nextOrientation
-                                        ? current
-                                        : { ...current, [currentImage]: nextOrientation }
-                                ));
+                                const { naturalWidth, naturalHeight } = image;
+                                if (!naturalWidth || !naturalHeight) return;
+                                setDimensions((current) => {
+                                    const existing = current[currentImage];
+                                    if (
+                                        existing &&
+                                        existing.width === naturalWidth &&
+                                        existing.height === naturalHeight
+                                    ) {
+                                        return current;
+                                    }
+                                    return {
+                                        ...current,
+                                        [currentImage]: { width: naturalWidth, height: naturalHeight },
+                                    };
+                                });
                             }}
                             onError={() => {
                                 setFailedImages((current) => new Set(current).add(currentImage));
@@ -147,32 +169,34 @@ export default function PublicationImageCarousel({ images, title }: PublicationI
                             <ChevronRightIcon className="h-5 w-5" />
                         </button>
 
-                        <div
-                            className={cn(
-                                'absolute inset-x-0 bottom-2 z-10 flex items-center justify-center',
-                                availableImages.length > 4 ? 'gap-0.5' : 'gap-1.5',
-                            )}
-                        >
-                            {availableImages.map((image, index) => (
-                                <button
-                                    key={image}
-                                    type="button"
-                                    onClick={() => setActiveIndex(index)}
-                                    className="group grid h-6 w-6 place-items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                                    aria-label={messages.publications.imagePosition
-                                        .replace('{current}', String(index + 1))
-                                        .replace('{total}', String(availableImages.length))}
-                                    aria-current={index === currentIndex ? 'true' : undefined}
-                                >
-                                    <span
-                                        aria-hidden="true"
-                                        className={cn(
-                                            'h-2 rounded-full shadow-sm transition-[width,background-color]',
-                                            index === currentIndex ? 'w-5 bg-accent' : 'w-2 bg-white/80 group-hover:bg-white',
-                                        )}
-                                    />
-                                </button>
-                            ))}
+                        <div className="pointer-events-none absolute inset-x-0 bottom-2 z-10 flex justify-center">
+                            <div
+                                className={cn(
+                                    'pointer-events-auto flex items-center justify-center rounded-full bg-black/50 px-1.5 backdrop-blur-sm',
+                                    availableImages.length > 4 ? 'gap-0.5' : 'gap-1.5',
+                                )}
+                            >
+                                {availableImages.map((image, index) => (
+                                    <button
+                                        key={image}
+                                        type="button"
+                                        onClick={() => setActiveIndex(index)}
+                                        className="group grid h-6 w-6 place-items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                                        aria-label={messages.publications.imagePosition
+                                            .replace('{current}', String(index + 1))
+                                            .replace('{total}', String(availableImages.length))}
+                                        aria-current={index === currentIndex ? 'true' : undefined}
+                                    >
+                                        <span
+                                            aria-hidden="true"
+                                            className={cn(
+                                                'h-2 rounded-full shadow-sm transition-[width,background-color]',
+                                                index === currentIndex ? 'w-5 bg-accent' : 'w-2 bg-white/80 group-hover:bg-white',
+                                            )}
+                                        />
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                         <span
                             className="absolute right-2 top-2 z-10 rounded bg-black/65 px-2 py-0.5 text-xs tabular-nums text-white"

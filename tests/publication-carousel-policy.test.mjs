@@ -26,11 +26,11 @@ test('integrates the carousel only into full publication cards', () => {
 test('uses a fixed stage and orientation-aware uncropped images', () => {
   const carousel = read('src/components/publications/PublicationImageCarousel.tsx');
 
-  assert.match(carousel, /h-72/);
-  assert.match(carousel, /w-full md:w-48/);
+  assert.match(carousel, /h-72 sm:h-80/);
+  assert.match(carousel, /w-full md:w-64/);
   assert.match(carousel, /classifyPreviewOrientation/);
-  assert.match(carousel, /aspect-\[4\/3\]/);
-  assert.match(carousel, /aspect-\[9\/16\]/);
+  assert.match(carousel, /aspectRatio/);
+  assert.match(carousel, /containerType:\s*'size'/);
   assert.match(carousel, /object-contain/);
   assert.match(carousel, /withBasePath\(`\/papers\/\$\{/);
   assert.match(carousel, /onLoad=/);
